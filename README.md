@@ -1,4 +1,4 @@
-# React + Shadcn + Vite Skeleton
+# React + Vite Skeleton
 
 1. Clone repo
 2. `cd` into the directory and run `npm i`
