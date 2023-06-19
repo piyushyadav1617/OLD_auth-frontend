@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, ChangeEventHandler, useState } from "react";
 import box1img from "./images/box1.svg";
 import box2img from "./images/box2.svg";
 import Navbar from "./navbar";
@@ -6,7 +6,7 @@ import Navbar from "./navbar";
 const Page1 = () => {
   const [selectedCard, setSelectedCard] = useState("");
 
-  const handleCardSelection = (event) => {
+  const handleCardSelection = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedCard(event.target.value);
   };
 
@@ -22,7 +22,7 @@ const Page1 = () => {
             </h2>
             <h5>Tell us about you and we can recommend the next steps.</h5>
 
-            <div class="options_row">
+            <div className="options_row">
               <label
                 className={`box1 ${selectedCard === "card1" ? "selected" : ""}`}
               >
@@ -34,7 +34,7 @@ const Page1 = () => {
                   onChange={handleCardSelection}
                 />
                 <div className="box1_content">
-                  <div class="inside_content">
+                  <div className="inside_content">
                     <img src={box1img} alt="option-first" />
 
                     <h6>I am a new Auth0 user</h6>
@@ -56,7 +56,7 @@ const Page1 = () => {
                   onChange={handleCardSelection}
                 />
                 <div className="box1_content">
-                  <div class="inside_content">
+                  <div className="inside_content">
                     <img src={box2img} alt="option-second" />
 
                     <h6>I have used Auth0 before</h6>

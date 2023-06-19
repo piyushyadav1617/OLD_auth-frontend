@@ -9,13 +9,8 @@ import { useDispatch , useSelector } from 'react-redux';
 import {loginToken , loginUser} from "../../Feature/Auth/authSlice";
 import { useNavigate } from 'react-router-dom';
 import { Modal } from "react-bootstrap";
-
-
-
-
+import { Link } from 'react-router-dom';
 const Login = () => {
-
-  
   const { userToken, user } = useSelector((state) => state.auth);
 
   // email validation
@@ -49,7 +44,7 @@ const Login = () => {
   // yup handler
   const schema = yup.object({
     password: yup.string().required("Password is required").min(3, "Minimum 3 character"),
-    username: yup.string().required("Email field required").email("Valid Email address required").test('userNotFound', 'User not exists', asyncEmailValidation),
+    username: yup.string().required("Email field required").email("Valid Email address required").test('userNotFound', 'User does not exist', asyncEmailValidation),
     type: yup.string().nullable().default(""),
     otp: yup.mixed().default(100000)
   }).required()
@@ -216,7 +211,7 @@ const Login = () => {
                   <form onSubmit={handleSubmit(onSubmitHandler)} autoComplete={false} noValidate className={`${isSubmitted && 'was-validated'}`}>
 
                     <div className="form-group">
-                      <label for="username" className="form-label">
+                      <label htmlFor="username" className="form-label">
                         Personal Email</label>
                       <input 
                       {...register('username', { required: true })}
@@ -234,7 +229,7 @@ const Login = () => {
 
 
                     <div className="form-group">
-                      <label for="password" className="form-label">Password</label>
+                      <label htmlFor="password" className="form-label">Password</label>
                       <input 
                        {...register('password', { required: true })} name="password" type="password" className={`form-control undefined ${errors?.password && 'is-invalid'}`}
                        placeholder="Enter your Password" 
@@ -285,7 +280,7 @@ const Login = () => {
 
               <div className="ats-content pt-4">
                 <p className="mb-0 text-center">I don’t have Flitchcoin account       &nbsp;
-                  <a className="a-t-s a-link" href="/sign-up">advance to Signup </a>
+                  <Link className="a-t-s a-link" to="/sign-up">advance to Sign Up </Link>
                   <span className="forward-arr arr-black"> <FaAngleRight className='pt-2' /></span>
                 </p></div>
             </div>

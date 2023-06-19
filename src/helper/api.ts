@@ -14,7 +14,7 @@ export const userChronoInfo = (data: any) => {
   }).then((res) => res.json())
 }
 
-export const checkUser = async ({emailid, fa2=false}: {emailid: string, fa2: boolean}) => {
+export const checkUser = async ({emailid, fa2=false}: {emailid: string, fa2?: boolean}) => {
   const body = JSON.stringify({
     emailid,
     fa2  
