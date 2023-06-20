@@ -13,16 +13,16 @@ import { Modal } from "react-bootstrap";
 import cross from "./images/cross.svg";
 import logo from "./images/logo.svg";
 import graphics from "./images/signup-graphic.svg";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "../../components/ui/Dialog";
-import { Input } from "../../components/ui/Input";
-import { Label } from "../../components/ui/Label";
+// import {
+//   Dialog,
+//   DialogContent,
+//   DialogDescription,
+//   DialogFooter,
+//   DialogHeader,
+//   DialogTitle,
+// } from "../../components/ui/Dialog";
+// import { Input } from "../../components/ui/Input";
+// import { Label } from "../../components/ui/Label";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -86,12 +86,11 @@ const Register = () => {
 
   const schema = yup
     .object({
-      fullName: yup.string().required("Full Name required"),
       username: yup
         .string()
         .required("Email required")
         .email("Valid Email address required")
-        .test("userFound", "User  exists", asyncEmailValidation),
+        .test("userFound", "User already exists", asyncEmailValidation),
       password: yup.string().required("Password required"),
       referal: yup.string().nullable().default("XXX"),
       type: yup.mixed().nullable().default("participant"),
@@ -114,8 +113,9 @@ const Register = () => {
   const handleChange = () => {
     setTermChecked(!termChecked);
   };
+
   // otp handler
-  const otpHandler = (e) => {
+  const otpHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     // debugger
     const formData = getValues();
     setLoading(true);
@@ -156,13 +156,13 @@ const Register = () => {
   const nextHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const formData = getValues();
 
-    const { username, password, fullName, type } = formData;
+    const { username, password, type } = formData;
     setLoading(true);
     if (e) {
       e.preventDefault();
       setLoading(false);
     }
-    if (username === "" || password === "" || fullName === "") {
+    if (username === "" || password === "") {
       setLoading(false);
       setShowA(true);
     } else {
@@ -172,7 +172,6 @@ const Register = () => {
       if (
         username === "" ||
         password === "" ||
-        fullName === "" ||
         type === ""
       ) {
         setShowA(true);
@@ -239,8 +238,8 @@ const Register = () => {
           posOtp += str2[i];
         }
       }
-      var str3 = typeQuery;
-      var posType = "";
+      const str3 = typeQuery;
+      let posType = "";
       for (i = 0; i < str3.length; i++) {
         if (str3[i] === " ") {
           posType += "+";
@@ -248,7 +247,7 @@ const Register = () => {
           posType += str3[i];
         }
       }
-      let data = {
+      const data = {
         otp: posOtp,
         add: posMemo,
         link: true,
@@ -298,13 +297,13 @@ const Register = () => {
   }, [showA, showB]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="container basis-3/5 flex flex-col min-h-screen">
+    <div className="min-h-screen flex flex-col sm:flex-row items-center justify-center">
+      <div className="container sm:basis-3/5 flex flex-col min-h-screen">
         <div className="self-start mt-7">
           <img src={logo} alt="AuthX logo" />
         </div>
-        <div className="flex items-center justify-center grow mr-12">
-          <div className="w-[32rem]">
+        <div className="flex my-12 items-center justify-center grow sm:mr-12">
+          <div className="md:w-96 lg:w-[32rem]">
             <h1 className="scroll-m-20 text-[2.5rem] text-center pb-5 font-semibold transition-colors first:mt-0">
               Create a new AuthX account
             </h1>
@@ -417,15 +416,15 @@ const Register = () => {
                 </div>
 
                 <div className="ats-content mt-11">
-                  <p className="mb-0 text-center text-xl flex items-center">
+                  <p className="mb-0 text-xl flex items-center flex-wrap">
                     I already have an AuthX account &nbsp;
-                    <Link className="a-t-s a-link" to="/">
+                    <Link className="a-t-s a-link text-xl flex items-center" to="/">
                       advance to Login{" "}
+                      <span className="forward-arr arr-black">
+                        {" "}
+                        <FaAngleRight className="pt-1 text-2xl" />
+                      </span>
                     </Link>
-                    <span className="forward-arr arr-black">
-                      {" "}
-                      <FaAngleRight className="pt-1 text-2xl" />
-                    </span>
                   </p>
                 </div>
               </form>
@@ -433,19 +432,19 @@ const Register = () => {
           </div>
         </div>
       </div>
-      <div className="bg-black min-h-screen basis-2/5 relative">
-        <div className="flex flex-col items-center mt-12 xl:mt-20">
-          <h1 className="text-4xl mx-4 text-white max-w-md tracking-widest font-light text-center">
+      <div className="bg-black min-h-screen w-full sm:basis-2/5 relative">
+        <div className="flex flex-col items-center mb-10 md:mt-14 xl:mt-16">
+          <h1 className="text-3xl xl:text-4xl mx-4 text-white max-w-md tracking-widest font-light text-center">
             AuthX’s Frictionless Signup/Login Hybrids
           </h1>
           <img
-            className="mt-12 xl:mt-20"
+            className="mt-8 md:mt-10 xl:mt-16 w-3/5"
             src={graphics}
             alt="AuthX pre login"
             width={340}
           />
         </div>
-        <span className="text-white text-right absolute bottom-0 right-0 mb-4 xl:mb-8 mr-6">© 2023 TrustAuthx. All rights reserved.</span>
+        <span className="text-white w-full text-right absolute bottom-0 right-0 mb-4 xl:mb-8 mr-6">© 2023 TrustAuthx. All rights reserved.</span>
       </div>
 
       <Modal
