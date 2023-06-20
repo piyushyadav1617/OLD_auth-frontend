@@ -14,7 +14,7 @@ const Login = () => {
   const { userToken, user } = useSelector((state) => state.auth);
 
   // email validation
-  const asyncEmailValidation = async (email) => {
+  const asyncEmailValidation = async (email:string) => {
     if (!document.activeElement || (document.activeElement && document.activeElement.type === "submit")) {
       try {
         const response = await checkUser({ emailid: email });
