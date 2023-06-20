@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { reset, signupUser, verifyEmail } from "../../Feature/Auth/authSlice";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import cross from "./images/cross.svg";
 import {
@@ -312,10 +313,10 @@ const Register = () => {
   return (
     <div className="login-2-page register-page">
       <div className="container">
-        <div className="row login-row">
-          <div className="col-xs-12 col-sm-12 col-lg-6 first-column">
-            <h1 className="scroll-m-20 text-4xl pb-5 font-semibold tracking-tight transition-colors first:mt-0">
-              Create Personal Account
+        <div className="">
+          <div className="w-[32rem]">
+            <h1 className="scroll-m-20 text-4xl text-center pb-5 font-semibold transition-colors first:mt-0">
+              Create a new AuthX account
             </h1>
 
             <div className="login-wrapper form-wrapper">
@@ -323,7 +324,7 @@ const Register = () => {
                 onSubmit={handleSubmit(onSubmit)}
                 className={`false ${isSubmitted && "was-validated"}`}
               >
-                <div className="form-group">
+                {/* <div className="form-group">
                   <label htmlFor="" className="form-label">
                     Full Name
                   </label>
@@ -342,21 +343,22 @@ const Register = () => {
                       <span>{errors?.fullName.message}</span>
                     </div>
                   )}
-                </div>
+                </div> */}
 
-                <div className="form-group">
-                  <label htmlFor="" className="form-label">
-                    Personal Email
+                <div className="form-group relative">
+                  <label htmlFor="email" className="form-label absolute translate-x-4 translate-y-[-12px] bg-white px-1">
+                    Email
                   </label>
                   <input
                     {...register("username", { required: true })}
+                    id="email"
                     name="username"
                     type="text"
                     className={`form-control undefined${
                       errors?.username && "is-invalid"
                     }`}
                     required
-                    placeholder="Enter your Email"
+                    placeholder="name@example.com"
                   />
                   {errors?.username && (
                     <div className="invalid-feedback">
@@ -365,8 +367,8 @@ const Register = () => {
                   )}
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="" className="form-label">
+                <div className="form-group mt-11 relative">
+                  <label htmlFor="" className="form-label absolute translate-x-4 translate-y-[-12px] bg-white px-1">
                     Password
                   </label>
                   <input
@@ -377,7 +379,7 @@ const Register = () => {
                     }`}
                     required
                     name="password"
-                    placeholder="Enter your password"
+                    placeholder="Enter password"
                   />
                   {errors?.password && (
                     <div className="invalid-feedback">
@@ -386,24 +388,41 @@ const Register = () => {
                   )}
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="" className="form-label">
+                <div className="form-group mt-11 relative">
+                  <label htmlFor="" className="form-label absolute translate-x-4 translate-y-[-12px] bg-white px-1">
                     Referral ID (Optional)
                   </label>
                   <input
                     {...register("referal", { required: false })}
                     type="text"
-                    className={`form-control undefined${
+                    className={`form-control ${
                       errors?.referal && "is-invalid"
                     }`}
+                    placeholder="Referral-ID"
                   />
                 </div>
 
-                <div className="flex items-center space-x-2">
-                  <input type="checkbox" className="checkbox-customized" />
+                <div className="form-group">
+                  <div className="d-grid start">
+                    <button
+                      type="submit"
+                      className="btn btn-spl-primary mt-11 btn-ca bg-gradient-to-r from-black to-[#6F6F6F] flex items-center justify-center"
+                      onClick={createRipple}
+                    >
+                      Next
+                      <span className="forward-arr">
+                        {" "}
+                        <FaAngleRight className="ca-forward-arr text-2xl mt-[2px]" />
+                      </span>
+                    </button>
+                  </div>
+                </div>
+
+                <div className="flex items-center mt-11">
+                  <input id="terms" type="checkbox" className="checkbox-customized cursor-pointer" />
                   <label
                     htmlFor="terms"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    className="ml-5 text-sm font-medium tracking-[.13em] leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   >
                     I have read and agree to Flitchcoin's{" "}
                     <a className="highlighted-text" href="#">
@@ -416,20 +435,17 @@ const Register = () => {
                   </label>
                 </div>
 
-                <div className="form-group">
-                  <div className="d-grid start">
-                    <button
-                      type="submit"
-                      className="block btn btn-spl-primary btn-ca"
-                      onClick={createRipple}
-                    >
-                      Create New Account
-                      <span className="forward-arr">
-                        {" "}
-                        <FaAngleRight className="ca-forward-arr" />
-                      </span>
-                    </button>
-                  </div>
+                <div className="ats-content mt-11">
+                  <p className="mb-0 text-center text-xl flex items-center">
+                    I already have an AuthX account &nbsp;
+                    <Link className="a-t-s a-link" to="/">
+                      advance to Login{" "}
+                    </Link>
+                    <span className="forward-arr arr-black">
+                      {" "}
+                      <FaAngleRight className="pt-1 text-2xl" />
+                    </span>
+                  </p>
                 </div>
               </form>
             </div>

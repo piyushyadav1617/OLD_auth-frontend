@@ -23,9 +23,9 @@ const Signup = () => {
 
                 <div className="d-grid pt-4">
                   <button className="btn btn-signup block btn-spl-primary">
-                    <Link className="signup-a" to="/register">
-                      <span className="signup-txt"> Signup with Email</span>
-                      <span className="forward-arr">
+                    <Link className="signup-a flex items-center justify-center" to="/register">
+                      <span className="signup-txt">Next</span>
+                      <span className="forward-arr text-2xl mt-[2px]">
                         {" "}
                         <FaAngleRight />
                       </span>
@@ -67,19 +67,9 @@ const Signup = () => {
                   Microsoft
                 </Button>
               </div>
-              {/* <p className="flex justify-center text-lg leading-7 [&:not(:first-child)]:mt-6">
-                I already have a Flitchcoin account{" "}
-                <a className="a-t-s a-link" href="/">
-                  advance to SignIn{" "}
-                </a>{" "}
-                <span className="move-arr">
-                  {" "}
-                  <FaAngleRight />{" "}
-                </span>
-              </p> */}
               <div className="ats-content pt-4">
-                <p className="mb-0 text-center">I already have a Flitchcoin account      &nbsp;
-                  <Link className="a-t-s a-link" to="/">advance to Sign In </Link>
+                <p className="mb-0 text-center">I already have an AuthX account      &nbsp;
+                  <Link className="a-t-s a-link" to="/">advance to Login </Link>
                   <span className="forward-arr arr-black"> <FaAngleRight className='pt-2' /></span>
                 </p></div>
             </div>
