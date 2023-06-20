@@ -391,6 +391,13 @@ label {
   transform: translateX(6px) !important;
   transition: all 0.5s ease-in-out;
 }
+
+.number_input input::-webkit-outer-spin-button,
+.number_input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 @media screen and (max-height: 800px) {
   .page-title.login-title {
     font-size: 33px;
@@ -520,9 +527,6 @@ input[type="password"],
 input[type="text"],
 textarea {
   border: 1px solid #ddd;
-  border-radius: 0;
-  border-radius: 4px;
-  margin: 5px 1px 3px 0;
   outline: none;
   padding: 15px;
   -webkit-transition: all 0.3s ease-in-out;
@@ -847,16 +851,13 @@ input[type="password"],
 textarea {
   font-weight: 500;
   letter-spacing: 0.11em;
-  border-radius: 0;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   outline: none;
   padding: 3px 0px 3px 3px;
-  margin: 5px 1px 3px 0px;
   border: 1px solid #dddddd;
-  border-radius: 4px;
   padding: 15px;
   padding-left: 2rem;
   padding-right: 2rem;
@@ -869,9 +870,7 @@ input[type="password"]:focus,
 textarea:focus {
   box-shadow: 0 0 5px rgba(81, 203, 238, 1);
   padding: 3px 0px 3px 3px;
-  margin: 5px 1px 3px 0px;
   border: 1px solid rgba(81, 203, 238, 1);
-  border-radius: 4px;
   padding: 15px;
   padding-left: 2rem;
   padding-right: 2rem;
@@ -882,7 +881,7 @@ input[type="number"]::placeholder,
 input[type="email"]::placeholder,
 input[type="password"]::placeholder,
 textarea {
-    color: #808080;
+  color: #808080;
 }
 
 .input1 {
@@ -899,7 +898,7 @@ textarea {
 /* FOR MODAL */
 
 .fade {
-  background: hsla(0, 0%, 85%, 0.78);
+  background: hsla(0, 0%, 0%, 0.78);
 }
 .modal-dialog-popup {
   align-items: center !important;

@@ -13,14 +13,14 @@ import { Modal } from "react-bootstrap";
 import cross from "./images/cross.svg";
 import logo from "./images/logo.svg";
 import graphics from "./images/signup-graphic.svg";
-// import {
-//   Dialog,
-//   DialogContent,
-//   DialogDescription,
-//   DialogFooter,
-//   DialogHeader,
-//   DialogTitle,
-// } from "../../components/ui/Dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "../../components/ui/Dialog";
 // import { Input } from "../../components/ui/Input";
 // import { Label } from "../../components/ui/Label";
 
@@ -304,7 +304,7 @@ const Register = () => {
         </div>
         <div className="flex my-12 items-center justify-center grow sm:mr-12">
           <div className="md:w-96 lg:w-[32rem]">
-            <h1 className="scroll-m-20 text-[2.5rem] text-center pb-5 font-semibold transition-colors first:mt-0">
+            <h1 className="scroll-m-20 text-[2.5rem] text-center pb-4 md:pb-5 font-semibold transition-colors first:mt-0">
               Create a new AuthX account
             </h1>
 
@@ -338,7 +338,7 @@ const Register = () => {
                   )}
                 </div>
 
-                <div className="form-group mt-11 relative">
+                <div className="form-group mt-8 md:mt-11 relative">
                   <label
                     htmlFor=""
                     className="form-label absolute translate-x-4 translate-y-[-12px] bg-white px-1"
@@ -362,7 +362,7 @@ const Register = () => {
                   )}
                 </div>
 
-                <div className="form-group mt-11 relative">
+                <div className="form-group mt-8 md:mt-11 relative">
                   <label
                     htmlFor=""
                     className="form-label absolute translate-x-4 translate-y-[-12px] bg-white px-1"
@@ -383,7 +383,7 @@ const Register = () => {
                   <div className="d-grid start">
                     <button
                       type="submit"
-                      className="btn btn-spl-primary mt-11 btn-ca bg-gradient-to-r from-black to-[#6F6F6F] flex items-center justify-center"
+                      className="btn btn-spl-primary mt-8 md:mt-11 btn-ca bg-gradient-to-r from-black to-[#6F6F6F] flex items-center justify-center"
                     >
                       Next
                       <span className="forward-arr">
@@ -394,7 +394,7 @@ const Register = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center mt-11">
+                <div className="flex items-center mt-8 md:mt-11">
                   <input
                     id="terms"
                     type="checkbox"
@@ -415,7 +415,7 @@ const Register = () => {
                   </label>
                 </div>
 
-                <div className="ats-content mt-11">
+                <div className="ats-content mt-8 md:mt-11">
                   <p className="mb-0 text-xl flex items-center flex-wrap">
                     I already have an AuthX account &nbsp;
                     <Link className="a-t-s a-link text-xl flex items-center" to="/">
@@ -433,7 +433,7 @@ const Register = () => {
         </div>
       </div>
       <div className="bg-black min-h-screen w-full sm:basis-2/5 relative">
-        <div className="flex flex-col items-center mb-10 md:mt-14 xl:mt-16">
+        <div className="flex flex-col items-center my-10 md:mt-14 xl:mt-16">
           <h1 className="text-3xl xl:text-4xl mx-4 text-white max-w-md tracking-widest font-light text-center">
             AuthX’s Frictionless Signup/Login Hybrids
           </h1>
@@ -454,14 +454,14 @@ const Register = () => {
         keyboard={false}
         className="modal-dialog-popup"
       >
-        <div className="signup_popup p-5 pt-0">
-          <div
+        <div className="bg-white rounded-3xl p-16">
+          {/* <div
             className="text-end pt-2 signup_cross"
             onClick={() => setShow(false)}
           >
             &#9747;
-          </div>
-          <p className="pt-4">
+          </div> */}
+          <p className="font-light">
             Please check your email for a registration link or OTP. You can
             register any way by clicking on the{" "}
             <span className="text_design">link in E-mail </span>or{" "}
@@ -471,19 +471,28 @@ const Register = () => {
           </p>
           <div className="row">
             <div className="col-lg-2"></div>
-            <div className="col-lg-8">
-              <div className="signup_popup mt-5 p-4">
-                <b>Enter OTP</b>
-                <br />
-                <input
+            <div className="">
+              <div className="number_input">
+                <div className="text-3xl my-11">Enter e-mail OTP</div>
+                <div className="flex justify-center">
+                  <input className="w-12 h-12 p-0 mr-1.5 text-center rounded-xl" type="number" maxLength={1}/>
+                  <input className="w-12 h-12 p-0 mr-1.5 text-center rounded-xl" type="number" maxLength={1}/>
+                  <input className="w-12 h-12 p-0 mr-1.5 text-center rounded-xl" type="number" maxLength={1}/>
+                  <input className="w-12 h-12 p-0 mr-1.5 text-center rounded-xl" type="number" maxLength={1}/>
+                  <input className="w-12 h-12 p-0 mr-1.5 text-center rounded-xl" type="number" maxLength={1}/>
+                  <input className="w-12 h-12 p-0 mr-1.5 text-center rounded-xl" type="number" maxLength={1}/>
+                  <input className="w-12 h-12 p-0 mr-1.5 text-center rounded-xl" type="number" maxLength={1}/>
+                  <input className="w-12 h-12 p-0 text-center rounded-xl" type="number" maxLength={1}/>
+                </div>
+                {/* <input
                   type="text"
                   className="w-50 signup_input mt-3"
                   placeholder="x x x x"
                   onChange={(e) => setOtp(e.target.value)}
                   name="otp"
                   value={otp}
-                />
-                <div className="row">
+                /> */}
+                {/* <div className="row">
                   <div className="col-lg-6"></div>
                   <div className="col-lg-6 mt-4">
                     <button
@@ -494,16 +503,16 @@ const Register = () => {
                       <span className="modal-arr"> ›</span>
                     </button>
                   </div>
-                </div>
+                </div> */}
               </div>
               <div className="row">
                 <div className="col-lg-10 text-start">
                   <button
-                    className="round-btn btn-dark mt-4 ps-4 pe-4 down-button"
+                    className="mt-16 p-0 bg-transparent font-['Lexend'] font-normal down-button"
                     onClick={nextHandler}
                   >
-                    I didn't receive Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <span className="modal-arr">›</span>
+                    I didn't receive Email
+                    <span className="modal-arr pl-2">›</span>
                   </button>
                 </div>
                 <div className="col-lg-2"></div>
