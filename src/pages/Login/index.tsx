@@ -15,6 +15,7 @@ const Login = () => {
 
   // email validation
   const asyncEmailValidation = async (email:string) => {
+    console.log("Email validation triggered")
     if (!document.activeElement || (document.activeElement && document.activeElement.type === "submit")) {
       try {
         const response = await checkUser({ emailid: email });
@@ -138,7 +139,8 @@ const Login = () => {
   };
 
 // on submit handler
-  const onSubmitHandler = async(e) => {
+  const onSubmitHandler = async(e:React.FormEvent<HTMLFormElement>) => {
+    console.log("inside submit handler",isValid)
     setLoading(true)
     const response = await checkUser({ emailid: getValues().username });
     const faValue = JSON.stringify(response.fa2);
@@ -208,7 +210,7 @@ const Login = () => {
                 </div>
                 <div className="login2-wrapper form-wrapper">
 
-                  <form onSubmit={handleSubmit(onSubmitHandler)} autoComplete={false} noValidate className={`${isSubmitted && 'was-validated'}`}>
+                  <form onSubmit={handleSubmit(onSubmitHandler)} autoComplete={"false"} noValidate className={`${isSubmitted && 'was-validated'}`}>
 
                     <div className="form-group">
                       <label htmlFor="username" className="form-label">
