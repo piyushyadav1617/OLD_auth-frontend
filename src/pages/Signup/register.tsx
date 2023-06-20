@@ -11,6 +11,8 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import cross from "./images/cross.svg";
+import logo from "./images/logo.svg";
+import graphics from "./images/signup-graphic.svg";
 import {
   Dialog,
   DialogContent,
@@ -151,7 +153,7 @@ const Register = () => {
   };
 
   // next handler
-  const nextHandler = (e) => {
+  const nextHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const formData = getValues();
 
     const { username, password, fullName, type } = formData;
@@ -202,9 +204,9 @@ const Register = () => {
     }
   };
 
-  var fun = (text) => {
+  const fun = (text) => {
     text = text.trim();
-    var newString = "";
+    let newString = "";
     for (const char of text) {
       newString += char === "" ? "+" : char;
     }
@@ -295,27 +297,15 @@ const Register = () => {
     }, 3000);
   }, [showA, showB]);
 
-  // for button ripple effect
-  function createRipple(event) {
-    const button = event.currentTarget;
-
-    const circle = document.createElement("span");
-    const diameter = Math.max(button.clientWidth, button.clientHeight);
-    const radius = diameter / 2;
-
-    circle.style.width = circle.style.height = `${diameter}px`;
-    circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
-    circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
-    circle.classList.add("ripple");
-    button.appendChild(circle);
-  }
-
   return (
-    <div className="login-2-page register-page">
-      <div className="container">
-        <div className="">
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="container basis-3/5 min-h-screen">
+        <div className="self-start mt-7">
+          <img src={logo} alt="AuthX logo" />
+        </div>
+        <div className="flex items-center justify-center mr-12 min-h-[90vh]">
           <div className="w-[32rem]">
-            <h1 className="scroll-m-20 text-4xl text-center pb-5 font-semibold transition-colors first:mt-0">
+            <h1 className="scroll-m-20 text-[2.5rem] text-center pb-5 font-semibold transition-colors first:mt-0">
               Create a new AuthX account
             </h1>
 
@@ -324,29 +314,11 @@ const Register = () => {
                 onSubmit={handleSubmit(onSubmit)}
                 className={`false ${isSubmitted && "was-validated"}`}
               >
-                {/* <div className="form-group">
-                  <label htmlFor="" className="form-label">
-                    Full Name
-                  </label>
-                  <input
-                    {...register("fullName")}
-                    name="fullName"
-                    required={true}
-                    type="text"
-                    className={`form-control undefined${
-                      errors?.fullName && "is-invalid"
-                    }`}
-                    placeholder="Enter your Name"
-                  />
-                  {errors?.fullName && (
-                    <div className="invalid-feedback">
-                      <span>{errors?.fullName.message}</span>
-                    </div>
-                  )}
-                </div> */}
-
                 <div className="form-group relative">
-                  <label htmlFor="email" className="form-label absolute translate-x-4 translate-y-[-12px] bg-white px-1">
+                  <label
+                    htmlFor="email"
+                    className="form-label absolute translate-x-4 translate-y-[-12px] bg-white px-1"
+                  >
                     Email
                   </label>
                   <input
@@ -368,7 +340,10 @@ const Register = () => {
                 </div>
 
                 <div className="form-group mt-11 relative">
-                  <label htmlFor="" className="form-label absolute translate-x-4 translate-y-[-12px] bg-white px-1">
+                  <label
+                    htmlFor=""
+                    className="form-label absolute translate-x-4 translate-y-[-12px] bg-white px-1"
+                  >
                     Password
                   </label>
                   <input
@@ -389,7 +364,10 @@ const Register = () => {
                 </div>
 
                 <div className="form-group mt-11 relative">
-                  <label htmlFor="" className="form-label absolute translate-x-4 translate-y-[-12px] bg-white px-1">
+                  <label
+                    htmlFor=""
+                    className="form-label absolute translate-x-4 translate-y-[-12px] bg-white px-1"
+                  >
                     Referral ID (Optional)
                   </label>
                   <input
@@ -407,7 +385,6 @@ const Register = () => {
                     <button
                       type="submit"
                       className="btn btn-spl-primary mt-11 btn-ca bg-gradient-to-r from-black to-[#6F6F6F] flex items-center justify-center"
-                      onClick={createRipple}
                     >
                       Next
                       <span className="forward-arr">
@@ -419,7 +396,11 @@ const Register = () => {
                 </div>
 
                 <div className="flex items-center mt-11">
-                  <input id="terms" type="checkbox" className="checkbox-customized cursor-pointer" />
+                  <input
+                    id="terms"
+                    type="checkbox"
+                    className="checkbox-customized cursor-pointer"
+                  />
                   <label
                     htmlFor="terms"
                     className="ml-5 text-sm font-medium tracking-[.13em] leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -450,7 +431,19 @@ const Register = () => {
               </form>
             </div>
           </div>
-          <div className="col-xs-12 col-sm-12 col-lg-6 login-a-center"></div>
+        </div>
+      </div>
+      <div className="bg-black min-h-screen basis-2/5">
+        <div className="flex flex-col items-center mt-20">
+          <h1 className="text-4xl text-white max-w-md tracking-widest font-light text-center">
+            AuthX’s Frictionless Signup/Login Hybrids
+          </h1>
+          <img
+            className="mt-20"
+            src={graphics}
+            alt="AuthX pre login"
+            width={340}
+          />
         </div>
       </div>
 
@@ -507,7 +500,7 @@ const Register = () => {
                 <div className="col-lg-10 text-start">
                   <button
                     className="round-btn btn-dark mt-4 ps-4 pe-4 down-button"
-                    onClick={(e) => nextHandler(e)}
+                    onClick={nextHandler}
                   >
                     I didn't receive Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <span className="modal-arr">›</span>
