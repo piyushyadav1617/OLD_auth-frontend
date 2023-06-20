@@ -299,11 +299,11 @@ const Register = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="container basis-3/5 min-h-screen">
+      <div className="container basis-3/5 flex flex-col min-h-screen">
         <div className="self-start mt-7">
           <img src={logo} alt="AuthX logo" />
         </div>
-        <div className="flex items-center justify-center mr-12 min-h-[90vh]">
+        <div className="flex items-center justify-center grow mr-12">
           <div className="w-[32rem]">
             <h1 className="scroll-m-20 text-[2.5rem] text-center pb-5 font-semibold transition-colors first:mt-0">
               Create a new AuthX account
@@ -433,18 +433,19 @@ const Register = () => {
           </div>
         </div>
       </div>
-      <div className="bg-black min-h-screen basis-2/5">
-        <div className="flex flex-col items-center mt-20">
-          <h1 className="text-4xl text-white max-w-md tracking-widest font-light text-center">
+      <div className="bg-black min-h-screen basis-2/5 relative">
+        <div className="flex flex-col items-center mt-12 xl:mt-20">
+          <h1 className="text-4xl mx-4 text-white max-w-md tracking-widest font-light text-center">
             AuthX’s Frictionless Signup/Login Hybrids
           </h1>
           <img
-            className="mt-20"
+            className="mt-12 xl:mt-20"
             src={graphics}
             alt="AuthX pre login"
             width={340}
           />
         </div>
+        <span className="text-white text-right absolute bottom-0 right-0 mb-4 xl:mb-8 mr-6">© 2023 TrustAuthx. All rights reserved.</span>
       </div>
 
       <Modal
