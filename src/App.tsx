@@ -1,9 +1,9 @@
+import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./pages/Header";
 import Login from "./pages/Login/index.jsx";
-import Signup from "./pages/Signup/index.jsx";
-import Register from "./pages/Signup/register.jsx";
+import SignUp from "./pages/Signup/index.js";
 import Payment from "./pages/Payment/index.jsx";
 import Dashboard from "./pages/Dashboard/index.jsx";
 import Page1 from "./pages/Dashboard/page1";
@@ -21,8 +21,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/sign-up" element={<Signup />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/sign-up" element={<SignUp />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/page1" element={<Page1 />} />
