@@ -901,7 +901,7 @@ textarea {
 /* FOR MODAL */
 
 .fade {
-  background: hsla(0, 0%, 0%, 0.78);
+  background: hsla(0, 0%, 0%, 0.68);
 }
 .modal-dialog-popup {
   align-items: center !important;
