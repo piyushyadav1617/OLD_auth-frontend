@@ -167,7 +167,7 @@ const SignUp = () => {
         </div>
         <div className="flex my-12 items-center justify-center grow sm:mr-12">
           <div className="md:w-96 lg:w-[32rem]">
-            <h1 className="scroll-m-20 text-[2.5rem] text-center pb-4 md:pb-5 font-semibold transition-colors first:mt-0">
+            <h1 className="scroll-m-20 text-[2.5rem] text-center pb-9 md:pb-11 font-semibold transition-colors first:mt-0">
               Create a new AuthX account
             </h1>
 
