@@ -159,15 +159,15 @@ const SignUp = () => {
       ref: "string",
       types: "string",
     };
-    setRequestObject(reqObject);
-
+    
     setAlert(false);
     if (!parsedData.agreeTerms) {
       setAlertMessage("Please accept our Terms of Service and Privacy Policy!");
       setAlert(true);
       return;
     }
-
+    
+    setRequestObject(reqObject);
     setLoading(true);
   };
 
