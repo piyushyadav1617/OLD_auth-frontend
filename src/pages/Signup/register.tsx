@@ -13,16 +13,7 @@ import { Modal } from "react-bootstrap";
 import cross from "./images/cross.svg";
 import logo from "./images/logo.svg";
 import graphics from "./images/signup-graphic.svg";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "../../components/ui/Dialog";
-// import { Input } from "../../components/ui/Input";
-// import { Label } from "../../components/ui/Label";
+import OtpInput from "react-otp-input";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -58,6 +49,14 @@ const Register = () => {
   const [typeQuery, setTypeQuery] = useState(
     searchParams.get("type") ? searchParams.get("type") : null
   );
+
+  // OTP action
+  useEffect(() => {
+    // console.log(otp);
+    if (otp.length === 8) {
+      console.log("send OTP");
+    }
+  }, [otp]);
 
   // Email Validation
   const asyncEmailValidation = async (email, values, a, d) => {
@@ -115,7 +114,7 @@ const Register = () => {
   };
 
   // otp handler
-  const otpHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const otpHandler = (e?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     // debugger
     const formData = getValues();
     setLoading(true);
@@ -152,8 +151,8 @@ const Register = () => {
     }
   };
 
-  // next handler
-  const nextHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  // no email otp handler
+  const noEmailHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const formData = getValues();
 
     const { username, password, type } = formData;
@@ -169,11 +168,7 @@ const Register = () => {
       setLoading(true);
       setSignType("participant");
       setValue("type", "participant");
-      if (
-        username === "" ||
-        password === "" ||
-        type === ""
-      ) {
+      if (username === "" || password === "" || type === "") {
         setShowA(true);
       } else {
         dispatch(signupUser({ formData, type }));
@@ -183,24 +178,31 @@ const Register = () => {
   };
 
   const [proceed, setProceed] = useState(false);
-  // form on submit handler
-  const onSubmit = (value) => {
-    setProceed(!proceed);
 
-    let isManualValid = false;
-    if (value.fullName && value.username && value.password) {
-      isManualValid = true;
-    }
-    if (isValid || isManualValid) {
-      const data = {
-        formData: value,
-      };
-      dispatch(signupUser(data));
-      setLoading(false);
-    } else {
-      setLoading(false);
-      setShowA(true);
-    }
+  // form on submit handler
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {  
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const parsedData = Object.fromEntries(formData.entries());
+
+    console.log(parsedData);
+    setShow(true);
+    
+    // setProceed(!proceed);
+    // let isManualValid = false;
+    // if (value.fullName && value.username && value.password) {
+    //   isManualValid = true;
+    // }
+    // if (isValid || isManualValid) {
+    //   const data = {
+    //     formData: value,
+    //   };
+    //   dispatch(signupUser(data));
+    //   setLoading(false);
+    // } else {
+    //   setLoading(false);
+    //   setShowA(true);
+    // }
   };
 
   const fun = (text) => {
@@ -219,9 +221,9 @@ const Register = () => {
       const strOtp = fun(otpQuery);
       const strType = fun(typeQuery);
 
-      var str = memoQuery;
-      var posMemo = "";
-      for (var i = 0; i < str.length; i++) {
+      const str = memoQuery;
+      let posMemo = "";
+      for (let i = 0; i < str.length; i++) {
         if (str[i] === " ") {
           posMemo += "+";
         } else {
@@ -229,9 +231,9 @@ const Register = () => {
         }
       }
 
-      var str2 = otpQuery;
-      var posOtp = "";
-      for (i = 0; i < str2.length; i++) {
+      const str2 = otpQuery;
+      let posOtp = "";
+      for (let i = 0; i < str2.length; i++) {
         if (str2[i] === " ") {
           posOtp += "+";
         } else {
@@ -240,7 +242,7 @@ const Register = () => {
       }
       const str3 = typeQuery;
       let posType = "";
-      for (i = 0; i < str3.length; i++) {
+      for (let i = 0; i < str3.length; i++) {
         if (str3[i] === " ") {
           posType += "+";
         } else {
@@ -310,13 +312,13 @@ const Register = () => {
 
             <div className="login-wrapper form-wrapper">
               <form
-                onSubmit={handleSubmit(onSubmit)}
+                onSubmit={handleFormSubmit}
                 className={`false ${isSubmitted && "was-validated"}`}
               >
                 <div className="form-group relative">
                   <label
                     htmlFor="email"
-                    className="form-label absolute translate-x-4 translate-y-[-12px] bg-white px-1"
+                    className="form-label absolute translate-x-6 translate-y-[-12px] bg-white px-1"
                   >
                     Email
                   </label>
@@ -340,12 +342,13 @@ const Register = () => {
 
                 <div className="form-group mt-8 md:mt-11 relative">
                   <label
-                    htmlFor=""
-                    className="form-label absolute translate-x-4 translate-y-[-12px] bg-white px-1"
+                    htmlFor="password"
+                    className="form-label absolute translate-x-6 translate-y-[-12px] bg-white px-1"
                   >
                     Password
                   </label>
                   <input
+                    id="password"
                     {...register("password")}
                     type="password"
                     className={`form-control undefined${
@@ -364,17 +367,19 @@ const Register = () => {
 
                 <div className="form-group mt-8 md:mt-11 relative">
                   <label
-                    htmlFor=""
-                    className="form-label absolute translate-x-4 translate-y-[-12px] bg-white px-1"
+                    htmlFor="referral-id"
+                    className="form-label absolute translate-x-6 translate-y-[-12px] bg-white px-1"
                   >
                     Referral ID (Optional)
                   </label>
                   <input
+                    id="referral-id"
                     {...register("referal", { required: false })}
                     type="text"
                     className={`form-control ${
                       errors?.referal && "is-invalid"
                     }`}
+                    name="referral-id"
                     placeholder="Referral-ID"
                   />
                 </div>
@@ -418,7 +423,10 @@ const Register = () => {
                 <div className="ats-content mt-8 md:mt-11">
                   <p className="mb-0 text-xl flex items-center flex-wrap">
                     I already have an AuthX account &nbsp;
-                    <Link className="a-t-s a-link text-xl flex items-center" to="/">
+                    <Link
+                      className="a-t-s a-link text-xl flex items-center"
+                      to="/"
+                    >
                       advance to Login{" "}
                       <span className="forward-arr arr-black">
                         {" "}
@@ -444,7 +452,9 @@ const Register = () => {
             width={340}
           />
         </div>
-        <span className="text-white w-full text-right absolute bottom-0 right-0 mb-4 xl:mb-8 mr-6">© 2023 TrustAuthx. All rights reserved.</span>
+        <span className="text-white w-full text-right absolute bottom-0 right-0 mb-4 xl:mb-8 mr-6">
+          © 2023 TrustAuthx. All rights reserved.
+        </span>
       </div>
 
       <Modal
@@ -474,16 +484,15 @@ const Register = () => {
             <div className="">
               <div className="number_input">
                 <div className="text-3xl my-11">Enter e-mail OTP</div>
-                <div className="flex justify-center">
-                  <input className="w-12 h-12 p-0 mr-1.5 text-center rounded-xl" type="number" maxLength={1}/>
-                  <input className="w-12 h-12 p-0 mr-1.5 text-center rounded-xl" type="number" maxLength={1}/>
-                  <input className="w-12 h-12 p-0 mr-1.5 text-center rounded-xl" type="number" maxLength={1}/>
-                  <input className="w-12 h-12 p-0 mr-1.5 text-center rounded-xl" type="number" maxLength={1}/>
-                  <input className="w-12 h-12 p-0 mr-1.5 text-center rounded-xl" type="number" maxLength={1}/>
-                  <input className="w-12 h-12 p-0 mr-1.5 text-center rounded-xl" type="number" maxLength={1}/>
-                  <input className="w-12 h-12 p-0 mr-1.5 text-center rounded-xl" type="number" maxLength={1}/>
-                  <input className="w-12 h-12 p-0 text-center rounded-xl" type="number" maxLength={1}/>
-                </div>
+                <OtpInput
+                  containerStyle="flex justify-center gap-1"
+                  inputStyle="otp-input-width h-12 p-0 text-center rounded-xl"
+                  value={otp}
+                  onChange={setOtp}
+                  numInputs={8}
+                  renderSeparator={<span></span>}
+                  renderInput={(props) => <input { ...props} />}
+                />
                 {/* <input
                   type="text"
                   className="w-50 signup_input mt-3"
@@ -509,7 +518,7 @@ const Register = () => {
                 <div className="col-lg-10 text-start">
                   <button
                     className="mt-16 p-0 bg-transparent font-['Lexend'] font-normal down-button"
-                    onClick={nextHandler}
+                    onClick={noEmailHandler}
                   >
                     I didn't receive Email
                     <span className="modal-arr pl-2">›</span>
@@ -530,7 +539,7 @@ const Register = () => {
         keyboard={false}
         className="modal-dialog-coin"
       >
-        <div className="popup_error">
+        <div className="popup_error text-white">
           <div className="popup_error_head">
             <p className="popup_error_head_text text-start ps-3 pt-2 mb-1">
               Unfilled !
@@ -562,6 +571,7 @@ const Register = () => {
           </div>
         </div>
       </Modal>
+
       <Modal
         show={showB}
         onHide={() => setShowB(false)}
@@ -569,7 +579,7 @@ const Register = () => {
         keyboard={false}
         className="modal-dialog-coin"
       >
-        <div className="popup_error">
+        <div className="popup_error text-white">
           <div className="popup_error_head">
             <p className="popup_error_head_text text-start ps-3 pt-2 mb-1">
               Error !

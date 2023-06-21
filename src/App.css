@@ -15,6 +15,9 @@
 }
 
 /* ########### FOR SIGN UP PAGE ########## */
+.otp-input-width {
+    width: 3rem !important;
+}
 
 .login-2-page {
   align-items: center;
