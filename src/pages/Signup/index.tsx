@@ -21,6 +21,7 @@ type RequestObjectType = {
 };
 
 // TODO: debounce I have not received email button
+// Remove bootstrap components
 // Add email validation
 const SignUp = () => {
   const navigate = useNavigate();
@@ -61,6 +62,29 @@ const SignUp = () => {
       handleOTPValidation();
     }
   }, [otp]);
+
+  // Execute fetch once requestObject is updated to ensure we use latest data
+  useEffect(() => { 
+    async function fetchdata() {
+      const data = await handleSignUpRequest();
+      
+      if (data.msg) {
+        setMessageToken(data.msg);
+        setLoading(false);
+        setShow(true);
+      }
+      
+      if (data.detail) {
+        setAlertMessage(data.detail);
+        setAlert(true);
+        setLoading(false);
+      }
+    }
+
+    if (requestObject) {
+      fetchdata();
+    }
+  }, [requestObject]);
 
   //handle OTP Validation
   const handleOTPValidation = () => {
@@ -135,28 +159,16 @@ const SignUp = () => {
       ref: "string",
       types: "string",
     };
-    setRequestObject(reqObject);
-
+    
     setAlert(false);
     if (!parsedData.agreeTerms) {
       setAlertMessage("Please accept our Terms of Service and Privacy Policy!");
       setAlert(true);
       return;
     }
-
+    
+    setRequestObject(reqObject);
     setLoading(true);
-    const data = await handleSignUpRequest();
-
-    if (data.msg) {
-      setMessageToken(data.msg);
-      setLoading(false);
-      setShow(true);
-    }
-
-    if (data.detail) {
-      setAlertMessage(data.detail);
-      setAlert(true);
-    }
   };
 
   return (
@@ -232,7 +244,7 @@ const SignUp = () => {
                       type="submit"
                       className="btn btn-spl-primary mt-8 md:mt-11 btn-ca bg-gradient-to-r from-black to-[#6F6F6F] flex items-center justify-center"
                     >
-                      Next
+                      <span>Next</span>
                       <span className="forward-arr">
                         {" "}
                         <FaAngleRight className="ca-forward-arr text-2xl mt-[2px]" />
