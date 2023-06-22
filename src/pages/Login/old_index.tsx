@@ -17,12 +17,13 @@ type FormValues = {
   username: string;
   password: string;
   type: string | null;
-  otp:string
+  otp: string | number;
 };
 
 const Login = () => {
-  const { userToken, user } = useSelector((state:any) => state.auth);
+  const { userToken, user } = useSelector((state) => state.auth);
   const [otp, setOtp] = useState("");
+
 
   // email validation
   const asyncEmailValidation = async (email: string) => {
@@ -69,6 +70,7 @@ const Login = () => {
         .email("Valid Email address required")
         .test("userNotFound", "User does not exist", asyncEmailValidation),
       type: yup.string().nullable().default(""),
+      otp: yup.mixed().default(100000),
     })
     .required();
 
@@ -94,7 +96,7 @@ const Login = () => {
 
   useEffect(() => {
     setLoading(true);
-
+   
     if (userToken?.access_token) {
       dispatch(loginUser());
       setLoading(false);
@@ -113,7 +115,17 @@ const Login = () => {
     setLoading(false);
   }, [userToken, user]);
 
-
+  let str = "";
+  const nextDigit = (currVal: any, e: any) => {
+    str += e;
+    if (str.length === 6) {
+      setValue("otp", str);
+    }
+    let ele = document.querySelectorAll("input.otp");
+    if (str.length != 6) {
+      ele[currVal + 0].focus();
+    }
+  };
 
   const responseSocialAuth = async (response: any) => {
     // debugger
@@ -131,8 +143,7 @@ const Login = () => {
           setShow(true);
         } else {
           if (!userResponse.detail) {
-            const formData = getValues();
-            dispatch(loginToken({ username:formData.username,password:formData.password,type:"",otp:otp} as FormValues));
+            dispatch(loginToken(getValues() as FormValues));
           }
         }
       }
@@ -143,11 +154,9 @@ const Login = () => {
   const otpHandler = async (e: any) => {
     try {
       e.preventDefault();
-      const formData = getValues();
-      let res = await dispatch(loginToken({ username:formData.username,password:formData.password,type:"",otp:otp} as FormValues));
+      let res = await dispatch(loginToken(getValues() as FormValues));
       if (res.type === "auth/loginToken/rejected" && !res.payload) {
         alert("Invalid OTP");
-        setOtp("")
       } else {
         navigate("/dashboard");
       }
@@ -367,16 +376,38 @@ const Login = () => {
           <div className="login_modal_sub pt-2">
             Please enter <b>2FA</b> code to login
           </div>
-          <OtpInput
-            containerStyle="flex justify-center gap-1"
-            inputStyle="otp-input-width h-12 p-0 text-center rounded-xl"
-            value={otp}
-            onChange={setOtp}
-            numInputs={6}
-            renderSeparator={<span></span>}
-            renderInput={(props) => <input {...props} />}
-          />
-
+          <form className="mt-3">
+            <input
+              className="otp me-2"
+              type="text"
+              onChange={(e) => nextDigit(1, e.target.value)}
+            />
+            <input
+              className="otp me-2"
+              type="text"
+              onChange={(e) => nextDigit(2, e.target.value)}
+            />
+            <input
+              className="otp me-2"
+              type="text"
+              onChange={(e) => nextDigit(3, e.target.value)}
+            />
+            <input
+              className="otp me-2"
+              type="text"
+              onChange={(e) => nextDigit(4, e.target.value)}
+            />
+            <input
+              className="otp me-2"
+              type="text"
+              onChange={(e) => nextDigit(5, e.target.value)}
+            />
+            <input
+              className="otp"
+              type="text"
+              onChange={(e) => nextDigit(6, e.target.value)}
+            />
+          </form>
           <div className="text-center">
             <button
               type="button"

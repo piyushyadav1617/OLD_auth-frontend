@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "./authService";
+import { string } from "yup";
 
 interface UserLoginDatatype{
   username:string,
   password:string,
   type: string | null;
-  otp: number|string;
 }
 
 const initialState = {

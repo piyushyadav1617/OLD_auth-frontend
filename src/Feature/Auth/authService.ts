@@ -74,15 +74,17 @@ const loginToken = async (data:any) => {
   let response;
   try {
     console.log("login token funciton",data)
-    const params = new URLSearchParams();
-    params.append("username", data.username || data.email);
-    params.append("password", data.password);
-    if(data.otp === ""){
-      params.append("client_secret", 100000);
-    }else{
-      params.append("client_secret", Number(data.otp));
+    // const params = new URLSearchParams();
+    const body={
+      otp:"100000",
+      grant_type:"",
+      username:data.username || data.email,
+      password:data.password,
+      scope:"",
+      client_id:"",
+      client_secret:data?.otp ? Number(data?.otp) :"100000"
     }
-    response = await axios.post(`${API_DOMAIN}/token`, params, {
+    response = await axios.post(`${API_DOMAIN}/token`, body, {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         "Accept" : "application/x-www-form-urlencoded",
