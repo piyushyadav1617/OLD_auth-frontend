@@ -13,6 +13,7 @@ import Page4 from "./pages/Dashboard/page4";
 import Page5 from "./pages/Dashboard/page5";
 import Page6 from "./pages/Dashboard/page6";
 import Page7 from "./pages/Dashboard/page7";
+import Account from "./pages/Account/Account.js";
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
           <Route path="/dashboard/page5" element={<Page5 />} />
           <Route path="/dashboard/page6" element={<Page6 />} />
           <Route path="/dashboard/page7" element={<Page7 />} />
+          <Route path="/account/org" element={<Account />} />
+          <Route path="/account/:id" element={<Account />} />
+
         </Routes>
       </BrowserRouter>
     </>
