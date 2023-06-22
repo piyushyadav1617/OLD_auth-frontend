@@ -1,4 +1,5 @@
 import axios from "axios";
+import {API_DOMAIN} from '../../helper/constant'
 
 const defaultType = async (type) => {
   return type;
@@ -69,9 +70,10 @@ const verifyEmail = async (data) => {
 
 
 // login user
-const loginToken = async (data) => {
+const loginToken = async (data:any) => {
   let response;
   try {
+    console.log("login token funciton",data)
     const params = new URLSearchParams();
     params.append("username", data.username || data.email);
     params.append("password", data.password);
@@ -80,7 +82,7 @@ const loginToken = async (data) => {
     }else{
       params.append("client_secret", Number(data.otp));
     }
-    response = await axios.post("https://api.trustauthx.com/api/token", params, {
+    response = await axios.post(`${API_DOMAIN}/token`, params, {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         "Accept" : "application/x-www-form-urlencoded",
@@ -89,8 +91,8 @@ const loginToken = async (data) => {
     if (response.data) {
       localStorage.setItem("token", response.data.access_token);
     }
-  } catch (error) {
-    response = error.response;
+  } catch (error:any) {
+    response = error?.response;
   }
   if(response.status === 401) {
   }else{

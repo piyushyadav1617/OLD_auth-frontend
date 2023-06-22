@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react';
 import { FaAngleRight, FaApple, FaGoogle, FaMicrosoft } from "react-icons/fa";
 import { Button } from '../../components/ui/Button';
 import {checkUser} from "../../helper/api";
-import {useForm} from "react-hook-form"
+import {useForm,SubmitHandler} from "react-hook-form"
 import {yupResolver} from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { useDispatch , useSelector } from 'react-redux';
@@ -10,13 +10,24 @@ import {loginToken , loginUser} from "../../Feature/Auth/authSlice";
 import { useNavigate } from 'react-router-dom';
 import { Modal } from "react-bootstrap";
 import { Link } from 'react-router-dom';
+import { AppDispatch } from '../../store';
+
+type FormValues = {
+  username: string
+  password: string,
+  type: string | null;
+  otp: string|number;
+}
+
 const Login = () => {
   const { userToken, user } = useSelector((state) => state.auth);
 
   // email validation
   const asyncEmailValidation = async (email:string) => {
     console.log("Email validation triggered")
-    if (!document.activeElement || (document.activeElement && document.activeElement.type === "submit")) {
+    // console.log("active element is ",document.activeElement)
+    const activeElement=document.activeElement as HTMLInputElement
+    if (!activeElement || (activeElement && activeElement?.type === "submit")) {
       try {
         const response = await checkUser({ emailid: email });
         const { detail } = response;
@@ -26,10 +37,11 @@ const Login = () => {
           } else {
             setValue('type', 'participant')
           }
-          setfa2(JSON.stringify(response.fa2))
+          setfa2(JSON.stringify(response.fa2 || false))
           // setError('email', false)
           return true;
         } else {
+          console.log("async email validation failed")
           // setError('email', true);
           return false;
         }
@@ -44,7 +56,7 @@ const Login = () => {
 
   // yup handler
   const schema = yup.object({
-    password: yup.string().required("Password is required").min(3, "Minimum 3 character"),
+    password: yup.string().required("Password is required").min(6, "Minimum 6 character"),
     username: yup.string().required("Email field required").email("Valid Email address required").test('userNotFound', 'User does not exist', asyncEmailValidation),
     type: yup.string().nullable().default(""),
     otp: yup.mixed().default(100000)
@@ -67,7 +79,7 @@ const Login = () => {
   const [gAuth, setgAuth] = useState(false);
   const [loading, setLoading] = useState(false);
   const [proceed,setProceed] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   
 
@@ -91,7 +103,8 @@ const Login = () => {
 
     const formData = getValues();
     if (gAuth && formData.username.length && formData.password.length) {
-      dispatch(loginToken(formData));
+      const loginAction=loginToken(formData as FormValues)
+      dispatch(loginAction);
     setLoading(false)
     }
     setLoading(false)
@@ -124,7 +137,7 @@ const Login = () => {
         } else {
           if (!userResponse.detail) {
 
-            dispatch(loginToken(getValues()))
+            dispatch(loginToken(getValues() as FormValues))
           }
         }
       }
@@ -134,33 +147,44 @@ const Login = () => {
   // otp handler
   const otpHandler = (e) => {
     e.preventDefault();
-    dispatch(loginToken(getValues()));
+    dispatch(loginToken(getValues() as FormValues));
     setShow(false);
   };
 
 // on submit handler
-  const onSubmitHandler = async(e:React.FormEvent<HTMLFormElement>) => {
-    console.log("inside submit handler",isValid)
-    setLoading(true)
-    const response = await checkUser({ emailid: getValues().username });
-    const faValue = JSON.stringify(response.fa2);
-    if (isValid) {
-      if (faValue === "true") {
-        setShow(true);
-        setProceed(true)
-      } else {
-        dispatch(loginToken(e));
-        setProceed(true)
-      }
-    setLoading(false)
-    } else {
-      setShowA(true);
-      setTimeout(() => {
-        setShowA(false);
-      }, 3000)
-    setLoading(false)
-    }
+  const onSubmitHandler:SubmitHandler<FormValues> = async(data) => {
 
+    try{
+      console.log("inside submit handler email",isValid)
+      setLoading(true)
+      const response = await checkUser({ emailid: getValues().username });
+      
+      const faValue = JSON.stringify(response.fa2);
+      if (isValid) {
+        if (faValue === "true") {
+          setShow(true);
+          setProceed(true)
+        } else {
+         let res=await dispatch(loginToken(data));
+         if(res["type"]==="auth/loginToken/fulfilled"){
+          setError()
+         }
+          console.log("dispatch res is ",res)
+          setProceed(true)
+        }
+      setLoading(false)
+      } else {
+        console.log("Not valid")
+        setShowA(true);
+        setTimeout(() => {
+          setShowA(false);
+        }, 3000)
+      setLoading(false)
+      }
+      
+    }catch(err){
+      console.log("Error in onSubmitHandler ",err)
+    }
   }
 
   const navigatePage = (page) => {
@@ -210,7 +234,7 @@ const Login = () => {
                 </div>
                 <div className="login2-wrapper form-wrapper">
 
-                  <form onSubmit={handleSubmit(onSubmitHandler)} autoComplete={"false"} noValidate className={`${isSubmitted && 'was-validated'}`}>
+                  <form onSubmit={handleSubmit(onSubmitHandler)} autoComplete={false.toString()} noValidate className={`${isSubmitted && 'was-validated'}`}>
 
                     <div className="form-group">
                       <label htmlFor="username" className="form-label">
@@ -242,7 +266,7 @@ const Login = () => {
                                 {errors?.password?.message}
                               </div>
                             )
-                          }
+                      }
                     </div>
 
                     <div className="a-t-s a-link mt-4">

@@ -1,6 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "./authService";
 
+interface UserLoginDatatype{
+  username:string,
+  password:string,
+  type: string | null;
+  otp: number|string;
+}
+
 const initialState = {
   selectedType: null,
   userToken: null,
@@ -82,7 +89,7 @@ export const loginUser = createAsyncThunk(
 
 export const loginToken = createAsyncThunk(
   "auth/loginToken",
-  async (data, thunkAPI) => {
+  async (data:UserLoginDatatype, thunkAPI) => {
     try {
       return authService.loginToken(data);
     } catch (error:any) {
