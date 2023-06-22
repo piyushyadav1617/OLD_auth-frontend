@@ -1,9 +1,9 @@
+import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./pages/Header";
 import Login from "./pages/Login/index.jsx";
-import Signup from "./pages/Signup/index.jsx";
-import Register from "./pages/Signup/register.jsx";
+import SignUp from "./pages/Signup/index.js";
 import Payment from "./pages/Payment/index.jsx";
 import Dashboard from "./pages/Dashboard/index.jsx";
 import Page1 from "./pages/Dashboard/page1";
@@ -14,6 +14,8 @@ import Page5 from "./pages/Dashboard/page5";
 import Page6 from "./pages/Dashboard/page6";
 import Page7 from "./pages/Dashboard/page7";
 import Account from "./pages/Account/Account.js";
+import PasswordReset from "./pages/password_reset/passwordReset.js";
+import NewPassword from "./pages/password_reset/newPassword";
 
 function App() {
   return (
@@ -22,8 +24,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/sign-up" element={<Signup />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path ="/reset-password" element={<PasswordReset/>}/>
+          <Route path ="/new-password" element={<NewPassword/>}/>
           <Route path="/payment" element={<Payment />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/page1" element={<Page1 />} />

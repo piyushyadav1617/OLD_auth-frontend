@@ -67,6 +67,7 @@ const verifyEmail = async (data) => {
   }
 };
 
+
 // login user
 const loginToken = async (data) => {
   let response;

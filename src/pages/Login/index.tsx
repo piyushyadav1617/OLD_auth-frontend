@@ -14,7 +14,7 @@ const Login = () => {
   const { userToken, user } = useSelector((state) => state.auth);
 
   // email validation
-  const asyncEmailValidation = async (email) => {
+  const asyncEmailValidation = async (email:string) => {
     if (!document.activeElement || (document.activeElement && document.activeElement.type === "submit")) {
       try {
         const response = await checkUser({ emailid: email });
@@ -244,7 +244,8 @@ const Login = () => {
                     </div>
 
                     <div className="a-t-s a-link mt-4">
-                      {/* <span className="a-t-s">Forgot Password ?</span> */}
+                     
+                      <span onClick={()=>navigate('/reset-password')} className="a-t-s cursor-pointer">Forgot Password ?</span>
                     </div>
 
                     <div className="d-grid d-grid-login pt-4">
