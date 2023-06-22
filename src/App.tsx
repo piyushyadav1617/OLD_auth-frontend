@@ -13,6 +13,8 @@ import Page4 from "./pages/Dashboard/page4";
 import Page5 from "./pages/Dashboard/page5";
 import Page6 from "./pages/Dashboard/page6";
 import Page7 from "./pages/Dashboard/page7";
+import PasswordReset from "./pages/password_reset/passwordReset.js";
+import NewPassword from "./pages/password_reset/newPassword";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path ="/reset-password" element={<PasswordReset/>}/>
+          <Route path ="/new-password" element={<NewPassword/>}/>
           <Route path="/payment" element={<Payment />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/page1" element={<Page1 />} />
