@@ -254,7 +254,6 @@ const SignUp = () => {
                 <div className="flex items-center mt-8 md:mt-11">
                   <input
                     id="terms"
-                    onChange={(e) => e.currentTarget.value}
                     type="checkbox"
                     name="agreeTerms"
                     className="checkbox-customized cursor-pointer"
