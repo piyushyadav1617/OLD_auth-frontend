@@ -270,7 +270,8 @@ const Login = () => {
                     </div>
 
                     <div className="a-t-s a-link mt-4">
-                      {/* <span className="a-t-s">Forgot Password ?</span> */}
+                     
+                      <span onClick={()=>navigate('/reset-password')} className="a-t-s cursor-pointer">Forgot Password ?</span>
                     </div>
 
                     <div className="d-grid d-grid-login pt-4">
