@@ -17,11 +17,11 @@ type FormValues = {
   username: string;
   password: string;
   type: string | null;
-  otp:string
+  otp: string | undefined;
 };
 
 const Login = () => {
-  const { userToken, user } = useSelector((state:any) => state.auth);
+  const { userToken, user } = useSelector((state: any) => state.auth);
   const [otp, setOtp] = useState("");
 
   // email validation
@@ -69,6 +69,7 @@ const Login = () => {
         .email("Valid Email address required")
         .test("userNotFound", "User does not exist", asyncEmailValidation),
       type: yup.string().nullable().default(""),
+      otp: yup.string(),
     })
     .required();
 
@@ -113,8 +114,6 @@ const Login = () => {
     setLoading(false);
   }, [userToken, user]);
 
-
-
   const responseSocialAuth = async (response: any) => {
     // debugger
     const { user, providerId } = response;
@@ -132,7 +131,14 @@ const Login = () => {
         } else {
           if (!userResponse.detail) {
             const formData = getValues();
-            dispatch(loginToken({ username:formData.username,password:formData.password,type:"",otp:otp} as FormValues));
+            dispatch(
+              loginToken({
+                username: formData.username,
+                password: formData.password,
+                type: "",
+                otp: otp,
+              } as FormValues)
+            );
           }
         }
       }
@@ -144,10 +150,17 @@ const Login = () => {
     try {
       e.preventDefault();
       const formData = getValues();
-      let res = await dispatch(loginToken({ username:formData.username,password:formData.password,type:"",otp:otp} as FormValues));
+      let res = await dispatch(
+        loginToken({
+          username: formData.username,
+          password: formData.password,
+          type: "",
+          otp: otp,
+        } as FormValues)
+      );
       if (res.type === "auth/loginToken/rejected" && !res.payload) {
         alert("Invalid OTP");
-        setOtp("")
+        setOtp("");
       } else {
         navigate("/dashboard");
       }

@@ -5,7 +5,8 @@ import { string } from "yup";
 interface UserLoginDatatype{
   username:string,
   password:string,
-  type: string | null;
+  type: string | null,
+  otp:string| undefined
 }
 
 const initialState = {
