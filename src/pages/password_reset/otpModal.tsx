@@ -70,10 +70,11 @@ import { useNavigate } from "react-router-dom";
 
 interface ModalProps {
   handleModal: () => void;
+  handleForm: (e: React.FormEvent<HTMLFormElement>) => void;
   add: string;
 }
 
-const Modal: React.FC<ModalProps> = ({ handleModal, add }) => {
+const Modal: React.FC<ModalProps> = ({ handleModal, handleForm, add }) => {
   const [otp, setOtp] = useState("");
   const navigate = useNavigate();
 
@@ -106,7 +107,7 @@ const Modal: React.FC<ModalProps> = ({ handleModal, add }) => {
 
   return (
     <>
-      <div className="fixed inset-0 bg-black opacity-60 z-10" onClick={handleModal}></div>
+      <div className="fixed inset-0 bg-black opacity-60 z-10"></div>
       <div className="absolute top-[50vh] left-[50vw] translate-x-[-50%] translate-y-[-50%] bg-white flex flex-col justify-center items-center p-4 w-1/2 rounded-lg z-20 ">
         <p>
           Please check your email for a reset password OTP. You can reset password{" "}
@@ -122,7 +123,7 @@ const Modal: React.FC<ModalProps> = ({ handleModal, add }) => {
         </form>
 
         <div className="flex w-full">
-          <span className="cursor-pointer  text-transparent  bg-clip-text bg-gradient-to-r from-blue-400 to-pink-600 ">I didn't receive Email &gt;</span>
+          <span className="cursor-pointer  text-transparent  bg-clip-text bg-gradient-to-r from-blue-400 to-pink-600 " onClick = {handleForm}>I didn't receive Email &gt;</span>
         </div>
       </div>
     </>

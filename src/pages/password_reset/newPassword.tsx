@@ -13,12 +13,12 @@ const NewPassword: React.FC = () => {
   const [show, setShow] = useState(false);
 
   const handleModal = () => {
-    setShow(!show);
+    setShow(true);
   };
 
   const handleForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(email, pass);
+    // console.log(email, pass);
     fetch("https://api.trustauthx.com/forgot/Signup", {
       method: "PUT",
       headers: {
@@ -80,7 +80,7 @@ const NewPassword: React.FC = () => {
      </div>
       </div>
      
-    {show && <Modal handleModal ={handleModal}  add = {add}/>}
+    {show && <Modal handleModal = {handleModal}  handleForm = {handleForm} add = {add}/>}
     </div>
   );
 };
