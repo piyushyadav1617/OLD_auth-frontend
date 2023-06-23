@@ -12,7 +12,10 @@ import { Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import OtpInput from "react-otp-input";
 import { AppDispatch } from "../../store";
-import logo from "../Signup/images/logo.svg"
+import logo from "../Signup/images/logo.svg";
+import graphic from "./images/login-graphic.svg";
+import { EmailComponent } from "./components/EmailComponent";
+import { PasswordComponent } from "./components/PasswordComponent";
 
 type FormValues = {
   username: string;
@@ -91,6 +94,8 @@ const Login = () => {
   const [show, setShow] = useState(false);
   const [gAuth, setgAuth] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState<FormDataEntryValue>("");
+  const [password, setPassword] = useState<FormDataEntryValue>("");
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
@@ -198,7 +203,9 @@ const Login = () => {
         setLoading(false);
       } else {
         console.log("Not valid");
-        setTimeout(() => {}, 3000);
+        setTimeout(() => {
+          console.log("Hello");
+        }, 3000);
         setLoading(false);
       }
     } catch (err) {
@@ -206,168 +213,51 @@ const Login = () => {
     }
   };
 
-  // for button ripple effect
-  function createRipple(event: any) {
-    const button = event.currentTarget;
+  const handleEmailSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const parsedData = Object.fromEntries(formData.entries());
+    setEmail(parsedData.username);
+  };
 
-    const circle = document.createElement("span");
-    const diameter = Math.max(button.clientWidth, button.clientHeight);
-    const radius = diameter / 2;
-
-    circle.style.width = circle.style.height = `${diameter}px`;
-    circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
-    circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
-    circle.classList.add("ripple");
-
-    const ripple = button.getElementsByClassName("ripple")[0];
-
-    if (ripple) {
-      ripple.remove();
-    }
-
-    button.appendChild(circle);
-  }
-
-  const buttons = document.getElementsByTagName("button");
-  for (const button of buttons) {
-    button.addEventListener("click", createRipple);
-  }
+  const handlePasswordSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const parsedData = Object.fromEntries(formData.entries());
+    setPassword(parsedData.password);
+  };
 
   return (
-    <div className="">
-      <div className="login-2-page">
+    <div className="min-h-screen flex flex-col sm:flex-row items-center justify-center">
+      <div className="container sm:basis-3/5 flex flex-col min-h-screen">
         <div className="self-start mt-7">
           <img src={logo} alt="AuthX logo" />
         </div>
-        <div className="container">
-          <div className="row login-row">
-            <div className="col-xs-12 col-sm-12 col-lg-6">
-              <div>
-                <div className="main-text-login ">
-                  <h3 className="r-main-title-2">Business Login</h3>
-                </div>
-                <div className="login2-wrapper form-wrapper">
-                  <form
-                    onSubmit={handleSubmit(onSubmitHandler)}
-                    autoComplete={false.toString()}
-                    noValidate
-                    className={`${isSubmitted && "was-validated"}`}
-                  >
-                    <div className="form-group">
-                      <label htmlFor="username" className="form-label">
-                        Personal Email
-                      </label>
-                      <input
-                        {...register("username", { required: true })}
-                        type="text"
-                        name="username"
-                        placeholder="Enter your Email"
-                        className={`form-control undefined ${
-                          errors?.username && "is-invalid"
-                        }`}
-                      />
-                      {errors.username && (
-                        <div className="invalid-feedback">
-                          <span>{errors.username?.message}</span>
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="password" className="form-label">
-                        Password
-                      </label>
-                      <input
-                        {...register("password", { required: true })}
-                        name="password"
-                        type="password"
-                        className={`form-control undefined ${
-                          errors?.password && "is-invalid"
-                        }`}
-                        placeholder="Enter your Password"
-                      />
-                      {errors?.password && (
-                        <div className="invalid-feedback">
-                          {errors?.password?.message}
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="a-t-s a-link mt-4">
-                      <span
-                        onClick={() => navigate("/reset-password")}
-                        className="a-t-s cursor-pointer"
-                      >
-                        Forgot Password ?
-                      </span>
-                    </div>
-
-                    <div className="d-grid d-grid-login pt-4">
-                      <button
-                        type="submit"
-                        className="ripple-button btn btn-signup loginbtn block btn-spl-primary"
-                      >
-                        <span className="signup-txt">Next</span>
-                        <span className="forward-arr">
-                          {" "}
-                          <FaAngleRight className="pt-1" />
-                        </span>
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-
-              <div className="relative mt-4">
-                <div className="absolute inset-0 flex items-center">
-                  <span className="w-full border-t" />
-                </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-background px-2 text-muted-foreground">
-                    Or continue with
-                  </span>
-                </div>
-              </div>
-              <div className="buttons-row pt-4">
-                <Button variant="outline" className="new_btns button1">
-                  <span className="icon1">
-                    {" "}
-                    <FaGoogle />{" "}
-                  </span>{" "}
-                  Google
-                </Button>
-                <Button variant="outline" className="new_btns button2">
-                  <span className="icon2">
-                    {" "}
-                    <FaApple />{" "}
-                  </span>
-                  Apple
-                </Button>
-                <Button variant="outline" className="new_btns button3">
-                  <span className="icon3">
-                    {" "}
-                    <FaMicrosoft />{" "}
-                  </span>
-                  Microsoft
-                </Button>
-              </div>
-
-              <div className="ats-content pt-4">
-                <p className="mb-0 text-center">
-                  I don’t have Flitchcoin account &nbsp;
-                  <Link className="a-t-s a-link" to="/sign-up">
-                    advance to Sign Up{" "}
-                  </Link>
-                  <span className="forward-arr arr-black">
-                    {" "}
-                    <FaAngleRight className="pt-2" />
-                  </span>
-                </p>
-              </div>
-            </div>
-            <div className="col-xs-12 col-sm-12 col-lg-6 login-a-center"></div>
+        <div className="flex my-12 items-center justify-center grow sm:mr-12">
+          <div className="mb-32 md:w-96 lg:w-[32rem]">
+            <h1 className="scroll-m-20 text-[2.5rem] text-center pb-9 md:pb-11 font-semibold transition-colors first:mt-0">
+              Login to your Authx account
+            </h1>
+            {!email && <EmailComponent handleEmailSubmit={handleEmailSubmit}/>}
+            {email && <PasswordComponent handlePasswordSubmit={handlePasswordSubmit} password={password}/>}
           </div>
         </div>
+      </div>
+      <div className="bg-black min-h-screen w-full sm:basis-2/5 relative">
+        <div className="flex flex-col items-center my-10 md:mt-14 xl:mt-16">
+          <h1 className="text-3xl xl:text-4xl mx-4 text-white max-w-md tracking-widest font-light text-center">
+            AuthX’s Frictionless Signup/Login Hybrids
+          </h1>
+          <img
+            className="mt-8 md:mt-10 xl:mt-16 w-3/5"
+            src={graphic}
+            alt="AuthX pre login"
+            width={340}
+          />
+        </div>
+        <span className="text-white w-full text-right absolute bottom-0 right-0 mb-4 xl:mb-8 mr-6">
+          © 2023 TrustAuthx. All rights reserved.
+        </span>
       </div>
 
       <Modal
