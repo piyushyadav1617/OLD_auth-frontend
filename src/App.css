@@ -914,12 +914,10 @@ textarea {
 }
 .modal-dialog {
   font-family: "Inter", sans-serif;
-  width: 50% !important;
 }
 @media screen and (min-width: 990px) {
   .modal-dialog {
     height: auto;
-    max-width: 100% !important;
   }
 }
 .modal-content {
@@ -960,22 +958,16 @@ textarea {
 @media screen and (min-width: 990px) {
   .modal-dialog {
     font-family: "Inter", sans-serif;
-    width: 50% !important;
   }
   .modal-dialog {
     height: auto;
-    max-width: 100% !important;
   }
-  .modal {
-    width: 120% !important;
-    margin-left: -10%;
-  }
+
 }
 
 @media screen and (max-width: 990px) {
   .modal {
-    width: 185% !important;
-    margin-left: -40%;
+    width: 100%;
   }
 }
 

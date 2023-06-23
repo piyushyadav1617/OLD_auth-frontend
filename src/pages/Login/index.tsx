@@ -238,8 +238,13 @@ const Login = () => {
             <h1 className="scroll-m-20 text-[2.5rem] text-center pb-9 md:pb-11 font-semibold transition-colors first:mt-0">
               Login to your Authx account
             </h1>
-            {!email && <EmailComponent handleEmailSubmit={handleEmailSubmit}/>}
-            {email && <PasswordComponent handlePasswordSubmit={handlePasswordSubmit} password={password}/>}
+            {!email && <EmailComponent handleEmailSubmit={handleEmailSubmit} />}
+            {email && (
+              <PasswordComponent
+                handlePasswordSubmit={handlePasswordSubmit}
+                password={password}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -267,32 +272,23 @@ const Login = () => {
         keyboard={false}
         className="modal-dialog-login"
       >
-        <div className="modal_popup">
-          <div className="login_modal_head text-start pt-3 ps-3 pb-2">
-            2 Factor Authentication
-          </div>
-          <div className="popup_line"></div>
-          <div className="login_modal_sub pt-2">
-            Please enter <b>2FA</b> code to login
-          </div>
-          <OtpInput
-            containerStyle="flex justify-center gap-1"
-            inputStyle="otp-input-width h-12 p-0 text-center rounded-xl"
-            value={otp}
-            onChange={setOtp}
-            numInputs={6}
-            renderSeparator={<span></span>}
-            renderInput={(props) => <input {...props} />}
-          />
-
-          <div className="text-center">
-            <button
-              type="button"
-              className="ok_btn_login mt-5 ps-4 pe-4 mb-4"
-              onClick={otpHandler}
-            >
-              Ok &#10004;
-            </button>
+        <div className="bg-white rounded-3xl p-16 mt-[20vh]">
+          <div>
+            <div className="">
+              <div className="text-3xl text-center mb-4">Enter MFA OTP</div>
+              <p className="text-center mb-10 text-slate-600 w-max">
+                Enter Multifactor OTP from your authentication app
+              </p>
+              <OtpInput
+                containerStyle="flex justify-center gap-1"
+                inputStyle="otp-input-width h-12 p-0 text-center rounded-xl"
+                value={otp}
+                onChange={setOtp}
+                numInputs={6}
+                renderSeparator={<span></span>}
+                renderInput={(props) => <input {...props} />}
+              />
+            </div>
           </div>
         </div>
       </Modal>
