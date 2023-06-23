@@ -251,7 +251,7 @@ const Login = () => {
       <div className="bg-black min-h-screen w-full sm:basis-2/5 relative">
         <div className="flex flex-col items-center my-10 md:mt-14 xl:mt-16">
           <h1 className="text-3xl xl:text-4xl mx-4 text-white max-w-md tracking-widest font-light text-center">
-            AuthX’s Frictionless Signup/Login Hybrids
+            AuthX: Ensure Security at every level
           </h1>
           <img
             className="mt-8 md:mt-10 xl:mt-16 w-3/5"
