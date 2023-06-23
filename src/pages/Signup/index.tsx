@@ -191,11 +191,6 @@ const SignUp = () => {
     button.appendChild(circle);
   }
 
-  const buttons = document.getElementsByTagName("button");
-  for (const button of buttons) {
-    button.addEventListener("click", createRipple);
-  }
-
   return (
     <div className="min-h-screen flex flex-col sm:flex-row items-center justify-center">
       <div className="container sm:basis-3/5 flex flex-col min-h-screen">
