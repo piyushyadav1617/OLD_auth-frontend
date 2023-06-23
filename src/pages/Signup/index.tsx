@@ -8,6 +8,7 @@ import logo from "./images/logo.svg";
 import graphics from "./images/signup-graphic.svg";
 import OtpInput from "react-otp-input";
 import { Alert, AlertDescription, AlertTitle } from "../../components/ui/alert";
+import { createRipple } from "../../helper/createRipple";
 
 // TS types
 type RequestObjectType = {
@@ -240,7 +241,8 @@ const SignUp = () => {
                   <div className="d-grid start">
                     <button
                       type="submit"
-                      className="btn btn-spl-primary mt-8 md:mt-11 btn-ca bg-gradient-to-r from-black to-[#6F6F6F] flex items-center justify-center"
+                      onClick={createRipple}
+                      className="ripple-button btn btn-spl-primary mt-8 md:mt-11 btn-ca bg-gradient-to-r from-black to-[#6F6F6F] flex items-center justify-center"
                     >
                       <span>Next</span>
                       <span className="forward-arr">
@@ -294,12 +296,12 @@ const SignUp = () => {
         </div>
       </div>
       <div className="bg-black min-h-screen w-full sm:basis-2/5 relative">
-        <div className="flex flex-col items-center my-10 md:mt-14 xl:mt-16">
+        <div className="flex flex-col items-center my-10 md:mt-12">
           <h1 className="text-3xl xl:text-4xl mx-4 text-white max-w-md tracking-widest font-light text-center">
             AuthX’s Frictionless Signup/Login Hybrids
           </h1>
           <img
-            className="mt-8 md:mt-10 xl:mt-16 w-3/5"
+            className="mt-8 md:mt-10 xl:mt-12 w-3/5"
             src={graphics}
             alt="AuthX pre login"
             width={340}
