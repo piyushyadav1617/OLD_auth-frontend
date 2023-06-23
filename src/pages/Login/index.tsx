@@ -246,12 +246,12 @@ const Login = () => {
         </div>
       </div>
       <div className="bg-black min-h-screen w-full sm:basis-2/5 relative">
-        <div className="flex flex-col items-center my-10 md:mt-12 xl:mt-14">
+        <div className="flex flex-col items-center my-10 md:mt-12">
           <h1 className="text-3xl xl:text-4xl mx-4 text-white max-w-md tracking-widest font-light text-center">
             AuthX: Ensure Security at every level
           </h1>
           <img
-            className="mt-8 md:mt-10 xl:mt-14 w-3/5"
+            className="mt-8 md:mt-10 xl:mt-12 w-3/5"
             src={graphic}
             alt="AuthX pre login"
             width={340}
