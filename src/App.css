@@ -914,6 +914,7 @@ textarea {
 }
 .modal-dialog {
   font-family: "Inter", sans-serif;
+  max-width: 756px;
 }
 @media screen and (min-width: 990px) {
   .modal-dialog {
@@ -1018,11 +1019,12 @@ textarea {
     font-size: 20px;
   }
 }
-@media screen and (min-width: 1400px) {
+/* @media screen and (min-width: 1400px) {
   .modal-dialog {
     width: 40% !important;
   }
-}
+} */
+
 .w-100 {
   width: 100% !important;
 }

@@ -272,11 +272,11 @@ const Login = () => {
         keyboard={false}
         className="modal-dialog-login"
       >
-        <div className="bg-white rounded-3xl p-16 mt-[20vh]">
+        <div className="bg-white rounded-3xl p-16 mt-[20vh] w-max self-center">
           <div>
             <div className="">
               <div className="text-3xl text-center mb-4">Enter MFA OTP</div>
-              <p className="text-center mb-10 text-slate-600 w-max">
+              <p className="text-center mb-10 text-slate-600">
                 Enter Multifactor OTP from your authentication app
               </p>
               <OtpInput
