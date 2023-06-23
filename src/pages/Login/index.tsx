@@ -233,7 +233,7 @@ const Login = () => {
         <div className="flex my-12 items-center justify-center grow sm:mr-12">
           <div className="mb-32 md:w-96 lg:w-[32rem]">
             <h1 className="scroll-m-20 text-[2.5rem] text-center pb-9 md:pb-11 font-semibold transition-colors first:mt-0">
-              Login to your Authx account
+              Login to your AuthX account
             </h1>
             {!email && <EmailComponent handleEmailSubmit={handleEmailSubmit} />}
             {email && (
