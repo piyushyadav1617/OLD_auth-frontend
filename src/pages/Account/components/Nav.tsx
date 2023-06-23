@@ -1,13 +1,14 @@
+import React from "react"
 import { Switch } from "../../../components/ui/Switch"
 import { Avatar, AvatarFallback, AvatarImage } from "../../../components/ui/avatar"
 import { AccountDropdown } from "./Dropdown"
 
 function AccountNav() {
     return (
-        <div className="flex items-center justify-end" >
+        <div className="flex items-center justify-end min-w-max" >
             <div className="flex items-center gap-1 mr-10" >
                 <Switch />
-                <span className="font-semibold" >
+                <span className="font-semibold text-xs sm:text-sm min-w-max" >
                     IAM mode
                 </span>
             </div>

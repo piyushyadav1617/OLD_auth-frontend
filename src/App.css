@@ -5,6 +5,10 @@
 :before {
   box-sizing: border-box;
 }
+
+body {
+  margin: 0;
+}
 .btn {
   border: none;
 }
@@ -16,7 +20,7 @@
 
 /* ########### FOR SIGN UP PAGE ########## */
 .otp-input-width {
-    width: 3rem !important;
+  width: 3rem !important;
 }
 
 .login-2-page {
@@ -800,7 +804,6 @@ backdrop-filter: blur(58px);
   font-style: normal !important;
   font-weight: 600 !important;
   color: #ffffff !important;
-
   outline: none;
   border: none;
 }
@@ -853,7 +856,7 @@ input[type="email"],
 input[type="password"],
 textarea {
   font-weight: 500;
-  letter-spacing: 0.11em;
+  /* letter-spacing: 0.11em; */
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
@@ -871,9 +874,9 @@ input[type="text"]:focus,
 [type="number"]:focus,
 input[type="password"]:focus,
 textarea:focus {
-  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  /* box-shadow: 0 0 5px rgba(81, 203, 238, 1); */
   padding: 3px 0px 3px 3px;
-  border: 1px solid rgba(81, 203, 238, 1);
+  /* border: 1px solid rgba(81, 203, 238, 1); */
   padding: 15px;
   padding-left: 2rem;
   padding-right: 2rem;

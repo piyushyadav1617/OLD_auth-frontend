@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./pages/Header";
 import Login from "./pages/Login/index.jsx";
 import SignUp from "./pages/Signup/index.js";
@@ -25,8 +25,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path ="/reset-password" element={<PasswordReset/>}/>
-          <Route path ="/new-password" element={<NewPassword/>}/>
+          <Route path="/reset-password" element={<PasswordReset />} />
+          <Route path="/new-password" element={<NewPassword />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/page1" element={<Page1 />} />
@@ -37,6 +37,7 @@ function App() {
           <Route path="/dashboard/page6" element={<Page6 />} />
           <Route path="/dashboard/page7" element={<Page7 />} />
           <Route path="/account/org" element={<Account />} />
+          <Route path="/account" element={<Account />} />
           <Route path="/account/:id" element={<Account />} />
 
         </Routes>

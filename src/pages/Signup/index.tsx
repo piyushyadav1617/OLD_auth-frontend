@@ -38,9 +38,8 @@ const SignUp = () => {
   const AlertMessage = ({ message }: { message: string }) => {
     return (
       <Alert
-        className={`${
-          alert ? "" : "hidden"
-        } absolute top-6 w-96 bg-yellow-400 z-[1100]`}
+        className={`${alert ? "" : "hidden"
+          } absolute top-6 w-96 bg-yellow-400 z-[1100]`}
       >
         <AlertTitle>Notice!</AlertTitle>
         <button
@@ -64,16 +63,16 @@ const SignUp = () => {
   }, [otp]);
 
   // Execute fetch once requestObject is updated to ensure we use latest data
-  useEffect(() => { 
+  useEffect(() => {
     async function fetchdata() {
       const data = await handleSignUpRequest();
-      
+
       if (data.msg) {
         setMessageToken(data.msg);
         setLoading(false);
         setShow(true);
       }
-      
+
       if (data.detail) {
         setAlertMessage(data.detail);
         setAlert(true);
@@ -159,14 +158,14 @@ const SignUp = () => {
       ref: "string",
       types: "string",
     };
-    
+
     setAlert(false);
     if (!parsedData.agreeTerms) {
       setAlertMessage("Please accept our Terms of Service and Privacy Policy!");
       setAlert(true);
       return;
     }
-    
+
     setRequestObject(reqObject);
     setLoading(true);
   };
@@ -186,7 +185,7 @@ const SignUp = () => {
             <div className="login-wrapper form-wrapper">
               <form
                 onSubmit={handleFormSubmit}
-                // className="was-validated"
+              // className="was-validated"
               >
                 <div className="form-group relative">
                   <label
@@ -385,7 +384,7 @@ const SignUp = () => {
                 cy="12"
                 r="10"
                 stroke="currentColor"
-                stroke-width="4"
+                strokeWidth="4"
               ></circle>
               <path
                 className="opacity-75"

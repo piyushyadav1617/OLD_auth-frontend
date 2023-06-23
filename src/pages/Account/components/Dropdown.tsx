@@ -11,20 +11,22 @@ import {
 import { ChevronDown } from "lucide-react"
 import { AddItemSvg, BillingSvg, CloudSvg, GithubSvg, InviteSvg, LogOutSvg, ProfileItemSvg, SettingsSvg, TeamSvg } from "../../../assets/Svg/Account/DropDown"
 
-type Checked = DropdownMenuCheckboxItemProps["checked"]
-
 export function AccountDropdown() {
-    const [showStatusBar, setShowStatusBar] = React.useState<Checked>(true)
-    const [showActivityBar, setShowActivityBar] = React.useState<Checked>(false)
-    const [showPanel, setShowPanel] = React.useState<Checked>(false)
 
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center font-semibold  active:border-0 active:outline-none" >
-                Admirra John <ChevronDown className="mt-1" />
+            <DropdownMenuTrigger className="active:border-0 active:outline-none" >
+                <div className="text-xs sm:text-sm flex items-center font-semibold  min-w-max" >
+                    <span className="hidden sm:block" >
+                        Admirra John
+                    </span>
+                    <ChevronDown className="mt-1" />
+                </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuLabel  >
+                    My Account
+                </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <MenuItem icon={<ProfileItemSvg />} title="Profile" />
                 <MenuItem icon={<BillingSvg />} title="Billing" />
