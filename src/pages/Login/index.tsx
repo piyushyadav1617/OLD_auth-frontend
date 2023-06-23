@@ -12,6 +12,7 @@ import { Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import OtpInput from "react-otp-input";
 import { AppDispatch } from "../../store";
+import logo from "../Signup/images/logo.svg"
 
 type FormValues = {
   username: string;
@@ -150,7 +151,7 @@ const Login = () => {
     try {
       e.preventDefault();
       const formData = getValues();
-      let res = await dispatch(
+      const res = await dispatch(
         loginToken({
           username: formData.username,
           password: formData.password,
@@ -183,7 +184,7 @@ const Login = () => {
         if (faValue === "true") {
           setShow(true);
         } else {
-          let res = await dispatch(loginToken(data));
+          const res = await dispatch(loginToken(data));
           console.log("response from login token ", res);
           if (res["type"] === "auth/loginToken/fulfilled" && !res.payload) {
             setError("password", {
@@ -233,8 +234,11 @@ const Login = () => {
   }
 
   return (
-    <div>
+    <div className="">
       <div className="login-2-page">
+        <div className="self-start mt-7">
+          <img src={logo} alt="AuthX logo" />
+        </div>
         <div className="container">
           <div className="row login-row">
             <div className="col-xs-12 col-sm-12 col-lg-6">
@@ -301,7 +305,7 @@ const Login = () => {
                     <div className="d-grid d-grid-login pt-4">
                       <button
                         type="submit"
-                        className="btn btn-signup loginbtn block btn-spl-primary"
+                        className="ripple-button btn btn-signup loginbtn block btn-spl-primary"
                       >
                         <span className="signup-txt">Next</span>
                         <span className="forward-arr">
@@ -365,6 +369,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+
       <Modal
         show={show}
         onHide={() => setShow(false)}

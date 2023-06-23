@@ -169,6 +169,33 @@ const SignUp = () => {
     setLoading(true);
   };
 
+  // Button click ripple effect
+  function createRipple(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    const button = event.currentTarget;
+
+    const circle = document.createElement("span");
+    const diameter = Math.max(button.clientWidth, button.clientHeight);
+    const radius = diameter / 2;
+
+    circle.style.width = circle.style.height = `${diameter}px`;
+    circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+    circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+    circle.classList.add("ripple");
+
+    const ripple = button.getElementsByClassName("ripple")[0];
+
+    if (ripple) {
+      ripple.remove();
+    }
+
+    button.appendChild(circle);
+  }
+
+  const buttons = document.getElementsByTagName("button");
+  for (const button of buttons) {
+    button.addEventListener("click", createRipple);
+  }
+
   return (
     <div className="min-h-screen flex flex-col sm:flex-row items-center justify-center">
       <div className="container sm:basis-3/5 flex flex-col min-h-screen">
@@ -240,7 +267,8 @@ const SignUp = () => {
                   <div className="d-grid start">
                     <button
                       type="submit"
-                      className="btn btn-spl-primary mt-8 md:mt-11 btn-ca bg-gradient-to-r from-black to-[#6F6F6F] flex items-center justify-center"
+                      onClick={createRipple}
+                      className="ripple-button btn btn-spl-primary mt-8 md:mt-11 btn-ca bg-gradient-to-r from-black to-[#6F6F6F] flex items-center justify-center"
                     >
                       <span>Next</span>
                       <span className="forward-arr">

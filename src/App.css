@@ -1060,7 +1060,7 @@ span.ripple {
     opacity: 0;
   }
 }
-.login-2-page button {
+.ripple-button {
   position: relative !important;
   overflow: hidden;
   transition: background 400ms;
