@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { FaAngleRight, FaApple, FaGoogle, FaMicrosoft } from "react-icons/fa";
-import { Button } from "../../components/ui/Button";
 import { checkUser } from "../../helper/api";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginToken, loginUser } from "../../Feature/Auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import OtpInput from "react-otp-input";
 import { AppDispatch } from "../../store";
 import logo from "../Signup/images/logo.svg";
