@@ -1,4 +1,11 @@
-# React + Vite Skeleton
+<h1 style="display: flex; align-items: center; gap: 1rem"> <img width="42" alt="AuthX Logo" src="./src/assets/logo.svg"> AuthX </h1>
+
+## Prerequisites
+
+Make sure you have the following installed in your system:
+
+- [Node.js](https://nodejs.dev/en/)
+- [Git](https://git-scm.com/)
 
 ## Contributing Guide
 
@@ -17,6 +24,7 @@ AuthX API: [https://api.trustauthx.com/docs](https://api.trustauthx.com/docs)
 
 ## Built With
 
+- FE Library: [React](https://react.dev/)
 - Components: [shadcn](https://ui.shadcn.com/)
 - CSS Tech: [TailwindCSS](https://tailwindcss.com/)
 

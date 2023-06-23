@@ -914,12 +914,11 @@ textarea {
 }
 .modal-dialog {
   font-family: "Inter", sans-serif;
-  width: 50% !important;
+  max-width: 756px;
 }
 @media screen and (min-width: 990px) {
   .modal-dialog {
     height: auto;
-    max-width: 100% !important;
   }
 }
 .modal-content {
@@ -960,22 +959,16 @@ textarea {
 @media screen and (min-width: 990px) {
   .modal-dialog {
     font-family: "Inter", sans-serif;
-    width: 50% !important;
   }
   .modal-dialog {
     height: auto;
-    max-width: 100% !important;
   }
-  .modal {
-    width: 120% !important;
-    margin-left: -10%;
-  }
+
 }
 
 @media screen and (max-width: 990px) {
   .modal {
-    width: 185% !important;
-    margin-left: -40%;
+    width: 100%;
   }
 }
 
@@ -1026,11 +1019,12 @@ textarea {
     font-size: 20px;
   }
 }
-@media screen and (min-width: 1400px) {
+/* @media screen and (min-width: 1400px) {
   .modal-dialog {
     width: 40% !important;
   }
-}
+} */
+
 .w-100 {
   width: 100% !important;
 }
@@ -1060,7 +1054,7 @@ span.ripple {
     opacity: 0;
   }
 }
-.login-2-page button {
+.ripple-button {
   position: relative !important;
   overflow: hidden;
   transition: background 400ms;
