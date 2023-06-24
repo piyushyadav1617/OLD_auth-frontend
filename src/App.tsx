@@ -2,10 +2,10 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./pages/Header";
-import Login from "./pages/Login/index.jsx";
-import SignUp from "./pages/Signup/index.js";
-import Payment from "./pages/Payment/index.jsx";
-import Dashboard from "./pages/Dashboard/index.jsx";
+import Login from "./pages/Login/index";
+import SignUp from "./pages/Signup/index";
+import Payment from "./pages/Payment/index";
+import Dashboard from "./pages/Dashboard/index";
 import Page1 from "./pages/Dashboard/page1";
 import Page2 from "./pages/Dashboard/page2";
 import Page3 from "./pages/Dashboard/page3";
@@ -13,9 +13,10 @@ import Page4 from "./pages/Dashboard/page4";
 import Page5 from "./pages/Dashboard/page5";
 import Page6 from "./pages/Dashboard/page6";
 import Page7 from "./pages/Dashboard/page7";
-import Account from "./pages/Account/Account.js";
-import PasswordReset from "./pages/password_reset/passwordReset.js";
+import Account from "./pages/Account/Account";
+import PasswordReset from "./pages/password_reset/passwordReset";
 import NewPassword from "./pages/password_reset/newPassword";
+import { PasswordComponent } from "./pages/Login/components/PasswordComponent";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/password" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/reset-password" element={<PasswordReset />} />
           <Route path="/new-password" element={<NewPassword />} />
