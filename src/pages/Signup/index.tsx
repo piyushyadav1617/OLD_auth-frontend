@@ -38,8 +38,9 @@ const SignUp = () => {
   const AlertMessage = ({ message }: { message: string }) => {
     return (
       <Alert
-        className={`${alert ? "" : "hidden"
-          } absolute top-6 w-96 bg-yellow-400 z-[1100]`}
+        // className={`${alert ? "" : "hidden"
+        //   } absolute top-6 w-96 bg-yellow-400 z-[1100]`}
+        className="absolute top-6 w-96 bg-yellow-400 z-[1100]"
       >
         <AlertTitle>Notice!</AlertTitle>
         <button
