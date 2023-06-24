@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { checkUser } from "../../helper/api";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +13,7 @@ import logo from "../Signup/images/logo.svg";
 import graphic from "./images/login-graphic.svg";
 import { EmailComponent } from "./components/EmailComponent";
 import { PasswordComponent } from "./components/PasswordComponent";
+import { useLocation } from "react-router-dom";
 
 type FormValues = {
   username: string;
@@ -23,14 +24,11 @@ type FormValues = {
 
 const Login = () => {
   const { userToken, user } = useSelector((state: any) => state.auth);
-  const [otp, setOtp] = useState("");
 
   // email validation
   const asyncEmailValidation = async (email: string) => {
-    console.log("Email validsetffa2ation triggered");
-    // console.log("active element is ",document.activeElement)
     const activeElement = document.activeElement as HTMLInputElement;
-    if (!activeElement || (activeElement && activeElement?.type === "submit")) {
+    if (!activeElement || (activeElement && activeElement?.type === "submit" && isValid)) {
       try {
         const response = await checkUser({ emailid: email });
         const { detail } = response;
@@ -41,11 +39,9 @@ const Login = () => {
             setValue("type", "participant");
           }
           setfa2(JSON.stringify(response.fa2 || false));
-          // setError('email', false)
           return true;
         } else {
           console.log("async email validation failed");
-          // setError('email', true);
           return false;
         }
       } catch (e) {
@@ -60,17 +56,12 @@ const Login = () => {
   // yup handler
   const schema = yup
     .object({
-      password: yup
-        .string()
-        .required("Password is required")
-        .min(6, "Minimum 6 character"),
       username: yup
         .string()
         .required("Email field required")
         .email("Valid Email address required")
         .test("userNotFound", "User does not exist", asyncEmailValidation),
       type: yup.string().nullable().default(""),
-      otp: yup.string(),
     })
     .required();
 
@@ -91,14 +82,21 @@ const Login = () => {
   const [show, setShow] = useState(false);
   const [gAuth, setgAuth] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState<FormDataEntryValue>("");
   const [password, setPassword] = useState<FormDataEntryValue>("");
   const dispatch = useDispatch<AppDispatch>();
+  const [otp,setOtp]=useState("")
+  const [customError,setCustomError]=useState<any>("")
   const navigate = useNavigate();
+  const path:string=useLocation().pathname;
 
   useEffect(() => {
     setLoading(true);
 
+    if(path=='/password'){
+      if(!getValues().username){
+        navigate('/')
+      }
+    }
     if (userToken?.access_token) {
       dispatch(loginUser());
       setLoading(false);
@@ -109,7 +107,11 @@ const Login = () => {
     }
 
     const formData = getValues();
-    if (gAuth && formData.username.length && formData.password.length) {
+    if (gAuth && formData.username.length 
+      // && 
+      // formData.password.length
+      
+      ) {
       const loginAction = loginToken(formData as FormValues);
       dispatch(loginAction);
       setLoading(false);
@@ -126,7 +128,6 @@ const Login = () => {
     if (user && user.email) {
       setgAuth(true);
       setValue("username", user.email);
-      setValue("password", passwordHash);
       const userResponse = await checkUser({ emailid: user.email });
       if (userResponse) {
         if (userResponse.fa2) {
@@ -137,7 +138,7 @@ const Login = () => {
             dispatch(
               loginToken({
                 username: formData.username,
-                password: formData.password,
+                // password: formData.password,
                 type: "",
                 otp: otp,
               } as FormValues)
@@ -156,7 +157,6 @@ const Login = () => {
       const res = await dispatch(
         loginToken({
           username: formData.username,
-          password: formData.password,
           type: "",
           otp: otp,
         } as FormValues)
@@ -175,34 +175,37 @@ const Login = () => {
   };
 
   // on submit handler
-  const onSubmitHandler: SubmitHandler<FormValues> = async (data) => {
+  const onSubmitHandler = async(pwd:FormDataEntryValue) => {
     try {
       console.log("inside submit handler email", isValid);
       setLoading(true);
       const response = await checkUser({ emailid: getValues().username });
-      console.log("checkUser response is ", response);
       const faValue = JSON.stringify(response.fa2);
       if (isValid) {
         if (faValue === "true") {
           setShow(true);
         } else {
+          const data={
+            username:getValues().username,
+            password:pwd,
+            otp:otp
+          }
           const res = await dispatch(loginToken(data));
           console.log("response from login token ", res);
           if (res["type"] === "auth/loginToken/fulfilled" && !res.payload) {
-            setError("password", {
-              type: "custom",
-              message: "Invalid Password",
+            setCustomError({
+              "password": { 
+                type: "custom",
+                message: "Invalid Password",
+              }
             });
+          }else{
+            navigate("/dashboard/page1");
           }
-          // console.log("dispatch res is ",res)
-          navigate("/dashboard/page1");
         }
         setLoading(false);
       } else {
         console.log("Not valid");
-        setTimeout(() => {
-          console.log("Hello");
-        }, 3000);
         setLoading(false);
       }
     } catch (err) {
@@ -211,18 +214,20 @@ const Login = () => {
   };
 
   const handleEmailSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const parsedData = Object.fromEntries(formData.entries());
-    setEmail(parsedData.username);
+    // e.preventDefault();
+    console.log( getValues())
+    setCustomError("")
+    navigate('/password')
   };
 
   const handlePasswordSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const parsedData = Object.fromEntries(formData.entries());
-    setPassword(parsedData.password);
+    // setPassword(parsedData.password);
+    onSubmitHandler(parsedData.password);
   };
+ 
 
   return (
     <div className="min-h-screen flex flex-col sm:flex-row items-center justify-center">
@@ -235,13 +240,13 @@ const Login = () => {
             <h1 className="scroll-m-20 text-[2.5rem] text-center pb-9 md:pb-11 font-semibold transition-colors first:mt-0">
               Login to your AuthX account
             </h1>
-            {!email && <EmailComponent handleEmailSubmit={handleEmailSubmit} />}
-            {email && (
-              <PasswordComponent
+            {  path!="/password" ?<EmailComponent handleEmailSubmit={handleEmailSubmit} register={register} errors={errors} handleSubmit={handleSubmit} />:
+             <PasswordComponent
                 handlePasswordSubmit={handlePasswordSubmit}
                 password={password}
+                errors={customError}
               />
-            )}
+            }
           </div>
         </div>
       </div>

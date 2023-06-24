@@ -73,7 +73,6 @@ const verifyEmail = async (data) => {
 const loginToken = async (data:any) => {
   let response;
   try {
-    console.log("login token funciton",data)
     // const params = new URLSearchParams();
     const body={
       otp:"100000",
