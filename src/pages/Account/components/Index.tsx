@@ -50,7 +50,7 @@ function AccountIndex() {
     return (
         <section className='oveflow-x-auto'>
             {!hasOrg &&
-                <div style={{ height: 'calc(100vh -  100px)' }} className='max-w-xl m-auto text-center flex items-center justify-center flex-col'   >
+                <div style={{ height: 'calc(100vh - 100px)' }} className='max-w-xl m-auto text-center flex items-center justify-center flex-col'   >
                     <div>
                         <div className='grid grid-cols-2 max-w-[280px] m-auto ' >
                             <DatabaseSvg />
