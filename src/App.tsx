@@ -27,8 +27,8 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/password" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path ="/reset-password" element={<PasswordReset/>}/>
-          <Route path ="/new-password" element={<NewPassword/>}/>
+          <Route path="/reset-password" element={<PasswordReset />} />
+          <Route path="/new-password" element={<NewPassword />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/page1" element={<Page1 />} />
@@ -38,7 +38,7 @@ function App() {
           <Route path="/dashboard/page5" element={<Page5 />} />
           <Route path="/dashboard/page6" element={<Page6 />} />
           <Route path="/dashboard/page7" element={<Page7 />} />
-          <Route path="/account/org" element={<Account />} />
+          <Route path="/account/" element={<Account />} />
           <Route path="/account/:id" element={<Account />} />
 
         </Routes>

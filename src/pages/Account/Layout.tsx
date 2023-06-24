@@ -1,3 +1,4 @@
+import React from "react"
 import AccountNav from "./components/Nav"
 import { Sidebar } from "./components/Sidebar"
 
@@ -7,17 +8,16 @@ interface AccountLayoutType {
 function AccountLayout({ children }: AccountLayoutType) {
     return (
         <div className="flex" >
-            <div className="flex-[15%]" >
+            <div className="min-h-screen bg-black" >
                 <Sidebar />
             </div>
-            <div className="flex-[85%] px-4 py-3" >
+            <div className="w-full px-2 sm:px-4 py-3 max-w-full overflow-x-auto" >
                 <AccountNav />
-                <div className="mt-4" >
+                <div className="mt-4 " >
                     {children}
                 </div>
             </div>
         </div>
-
     )
 }
 
