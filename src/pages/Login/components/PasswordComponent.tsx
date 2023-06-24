@@ -4,11 +4,16 @@ import { FaAngleRight } from "react-icons/fa";
 import { createRipple } from "../../../helper/createRipple";
 
 type PasswordSubmitType = {
-  handlePasswordSubmit: (e: React.FormEvent<HTMLFormElement>) => void,
-  password: string | File
-}
+  handlePasswordSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  password: string | File;
+  errors: any;
+};
 
-export const PasswordComponent = ({handlePasswordSubmit, password}: PasswordSubmitType) => {
+export const PasswordComponent = ({
+  handlePasswordSubmit,
+  password,
+  errors,
+}: PasswordSubmitType) => {
   return (
     <div className="login-wrapper form-wrapper">
       <form
@@ -26,11 +31,18 @@ export const PasswordComponent = ({handlePasswordSubmit, password}: PasswordSubm
             id="password"
             type="password"
             className="form-control"
-            defaultValue={password as string}
+            defaultValue={
+              password as string
+            }
             required
             name="password"
             placeholder="Enter password"
           />
+          {errors?.password && (
+            <div className=" color text-red-600">
+              <span>{errors?.password?.message}</span>
+            </div>
+          )}
         </div>
 
         <div className="form-group">

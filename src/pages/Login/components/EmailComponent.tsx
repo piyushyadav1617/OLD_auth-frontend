@@ -4,14 +4,23 @@ import { FaAngleRight } from "react-icons/fa";
 import { createRipple } from "../../../helper/createRipple";
 
 type EmailSubmitType = {
-  handleEmailSubmit: (e: React.FormEvent<HTMLFormElement>) => void
-}
+  handleEmailSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  register: any;
+  errors: any;
+  handleSubmit: any;
+};
 
-export const EmailComponent = ({handleEmailSubmit}: EmailSubmitType) => {
+export const EmailComponent = ({
+  handleEmailSubmit,
+  register,
+  errors,
+  handleSubmit,
+}: EmailSubmitType) => {
+  console.log("redered", errors);
   return (
     <div className="login-wrapper form-wrapper">
       <form
-        onSubmit={handleEmailSubmit}
+        onSubmit={handleSubmit(handleEmailSubmit)}
         // className="was-validated"
       >
         <div className="form-group relative">
@@ -22,13 +31,19 @@ export const EmailComponent = ({handleEmailSubmit}: EmailSubmitType) => {
             Email
           </label>
           <input
+            {...register("username", { required: true })}
             id="email"
-            name="username"
             type="text"
+            name="username"
             className="form-control"
             required
             placeholder="name@example.com"
           />
+          {errors.username && (
+            <div className="mt-2 color text-red-600">
+              <span>{errors.username?.message}</span>
+            </div>
+          )}
         </div>
 
         <div className="form-group">
