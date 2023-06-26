@@ -5,7 +5,7 @@ import Header from "./pages/Header";
 import Login from "./pages/Login/index";
 import SignUp from "./pages/Signup/index";
 import Payment from "./pages/Payment/index";
-import Dashboard from "./pages/Dashboard/index";
+import Dashboard from "./pages/Dashboard/page";
 import Page1 from "./pages/Dashboard/page1";
 import Page2 from "./pages/Dashboard/page2";
 import Page3 from "./pages/Dashboard/page3";

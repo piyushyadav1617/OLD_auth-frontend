@@ -4,7 +4,6 @@ import { NavLink as Link } from 'react-router-dom';
 import { OrgnaizationSvg, SettingSvg, SupportSvg } from '../../../assets/Svg/Account/Account';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-
 export function Sidebar() {
 
     const [collapse, setCollapse] = useState(false)
