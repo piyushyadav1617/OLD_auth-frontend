@@ -1,20 +1,20 @@
 "use client"
 import React, { useState, useEffect } from "react";
+import { checkUser } from "../../helper/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
+import { loginToken, loginUser } from "../../redux/Auth/authSlice";
 import { Modal } from "react-bootstrap";
 import OtpInput from "react-otp-input";
-;
-import { LOGO } from "@/constants";
-import { checkUser } from "@/helper/api";
-import { loginToken, loginUser } from "@/redux/Auth/authSlice";
-import { useRouter, usePathname } from "next/navigation";
-import { EmailComponent } from "@/pages/Login/components/EmailComponent";
-import { PasswordComponent } from "@/pages/Login/components/PasswordComponent";
-import { AppDispatch } from "@/redux/store";
+import { AppDispatch } from "../../redux/store";
+import logo from "../../pages/Signup/images/logo.svg"
+import graphic from "../../assets/images/login-graphic.svg"
+import { EmailComponent } from "./components/EmailComponent";
+import { PasswordComponent } from "./components/PasswordComponent";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 type FormValues = {
   username: string;
@@ -88,7 +88,16 @@ const Login = () => {
   const [otp, setOtp] = useState("")
   const [customError, setCustomError] = useState<any>("")
   const router = useRouter();
-  const path: string = usePathname()
+  const [path, setPath] = useState("")
+
+  // const path: string = router.pathname;
+  useEffect(() => {
+    if (router) {
+      setPath(router.pathname)
+    }
+
+  }, [router])
+
 
   useEffect(() => {
     setLoading(true);
@@ -229,11 +238,12 @@ const Login = () => {
     onSubmitHandler(parsedData.password);
   };
 
+
   return (
     <div className="min-h-screen flex flex-col sm:flex-row items-center justify-center">
       <div className="container sm:basis-3/5 flex flex-col min-h-screen">
         <div className="self-start mt-7">
-          <Image className="w-full" width="100" height="100" src={LOGO} alt="AuthX logo" />
+          <Image src={logo} alt="AuthX logo" />
         </div>
         <div className="flex my-12 items-center justify-center grow sm:mr-12">
           <div className="mb-32 md:w-96 lg:w-[32rem]">
@@ -255,9 +265,9 @@ const Login = () => {
           <h1 className="text-3xl xl:text-4xl mx-4 text-white max-w-md tracking-widest font-light text-center">
             AuthX: Ensure Security at every level
           </h1>
-          <img
+          <Image
             className="mt-8 md:mt-10 xl:mt-12 w-3/5"
-            src={'/login-graphic.svg'}
+            src={graphic}
             alt="AuthX pre login"
             width={340}
           />
