@@ -1,17 +1,27 @@
 "use client"
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaAngleRight } from "react-icons/fa";
-import image from '../password_reset/group.svg';
-import logo from '../password_reset/logo.svg'
+import image from '../reset-password/group.svg';
+import logo from "../reset-password/logo.svg"
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
-import Modal from "../password_reset/otpModal";
+import Modal from "../reset-password/otpModal";
 
 const NewPassword: React.FC = () => {
 
   const searchparams = useSearchParams();
-  const email = searchparams.get("email");
+  const param = searchparams && searchparams?.get("param")
+  const router = useRouter();
+  console.log()
+  const [email, setEmail] = useState("")
+
+  useEffect(() => {
+    if (param !== null)
+      setEmail(param)
+    console.log(email)
+  }, [param, email])
+
   const [pass, setPass] = useState("");
   const [add, setAdd] = useState("");
   const [show, setShow] = useState(false);
@@ -61,7 +71,6 @@ const NewPassword: React.FC = () => {
         </div>
 
         <form className="flex flex-col w-full items-center justify-center text-left" onSubmit={handleForm}>
-
           <div className="relative w-[90vw] sm:w-3/4 md:w-1/2 lg:w-1/2 my-4 flex items-center">
             <input type="password" id="password" placeholder="xxxxxxxxx" className="block w-full text-sm text-gray-900 bg-transparent rounded-lg border-2" onChange={(e) => setPass(e.target.value)} />
             <label htmlFor="password" className="absolute translate-x-5 translate-y-[-29px] bg-white text-xl" >New Password</label>

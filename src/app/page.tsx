@@ -232,15 +232,16 @@ const Login = () => {
   return (
     <div className="min-h-screen flex flex-col sm:flex-row items-center justify-center">
       <div className="container sm:basis-3/5 flex flex-col min-h-screen">
-        <div className="self-start mt-7">
+        <div className="self-start ">
           <Image className="w-full" width="100" height="100" src={LOGO} alt="AuthX logo" />
         </div>
         <div className="flex my-12 items-center justify-center grow sm:mr-12">
-          <div className="mb-32 md:w-96 lg:w-[32rem]">
-            <h1 className="scroll-m-20 text-[2.5rem] text-center pb-9 md:pb-11 font-semibold transition-colors first:mt-0">
+          <div className="mb-32 md:w-96 lg:w-[34rem]">
+            <h1 className="scroll-m-20 text-[2.3rem] text-center pb-9 md:pb-11 font-semibold transition-colors first:mt-0">
               Login to your AuthX account
             </h1>
-            {path != "/password" ? <EmailComponent handleEmailSubmit={handleEmailSubmit} register={register} errors={errors} handleSubmit={handleSubmit} /> :
+            {path != "/password" ?
+              <EmailComponent handleEmailSubmit={handleEmailSubmit} register={register} errors={errors} handleSubmit={handleSubmit} /> :
               <PasswordComponent
                 handlePasswordSubmit={handlePasswordSubmit}
                 password={password}
@@ -255,11 +256,12 @@ const Login = () => {
           <h1 className="text-3xl xl:text-4xl mx-4 text-white max-w-md tracking-widest font-light text-center">
             AuthX: Ensure Security at every level
           </h1>
-          <img
-            className="mt-8 md:mt-10 xl:mt-12 w-3/5"
-            src={'/login-graphic.svg'}
+          <Image
+            className="mt-8 md:mt-10 xl:mt-12 w-3/5 h-auto"
+            src='/login-graphic.svg'
             alt="AuthX pre login"
             width={340}
+            height={70}
           />
         </div>
         <span className="text-white w-full text-right absolute bottom-0 right-0 mb-4 xl:mb-8 mr-6">

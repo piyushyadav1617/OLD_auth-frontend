@@ -1,7 +1,9 @@
+"use client"
 import React from "react";
 import { FaAngleRight } from "react-icons/fa";
-import { createRipple } from "../../../helper/createRipple";
+import { createRipple } from "@/helper/createRipple";
 import Link from "next/link";
+import { Input } from "@/components/ui/Input";
 
 type PasswordSubmitType = {
   handlePasswordSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -9,16 +11,17 @@ type PasswordSubmitType = {
   errors: any;
 };
 
-export const PasswordComponent = ({
+const PasswordComponent = ({
   handlePasswordSubmit,
   password,
   errors,
 }: PasswordSubmitType) => {
   return (
-    <div className="login-wrapper form-wrapper">
+    <div className="">
       <form
         onSubmit={handlePasswordSubmit}
         // className="was-validated"
+        className="py-24 px-12"
       >
         <div className="form-group relative">
           <label
@@ -27,7 +30,7 @@ export const PasswordComponent = ({
           >
             Password
           </label>
-          <input
+          <Input
             id="password"
             type="password"
             className="form-control"
@@ -80,3 +83,5 @@ export const PasswordComponent = ({
     </div>
   );
 };
+
+export default PasswordComponent

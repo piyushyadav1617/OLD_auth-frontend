@@ -11,6 +11,7 @@ import { Alert, AlertDescription, AlertTitle } from "../../components/ui/alert";
 import { createRipple } from "../../helper/createRipple";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 // TS types
 type RequestObjectType = {
@@ -178,7 +179,7 @@ const SignUp = () => {
     <div className="min-h-screen flex flex-col sm:flex-row items-center justify-center">
       <div className="container sm:basis-3/5 flex flex-col min-h-screen">
         <div className="self-start mt-7">
-          <img src={logo} alt="AuthX logo" />
+          <Image src={logo} alt="AuthX logo" />
         </div>
         <div className="flex my-12 items-center justify-center grow sm:mr-12">
           <div className="md:w-96 lg:w-[32rem]">
@@ -202,7 +203,7 @@ const SignUp = () => {
                     id="email"
                     name="username"
                     type="text"
-                    className="form-control"
+                    className="form-control w-full"
                     required
                     placeholder="name@example.com"
                   />
@@ -218,7 +219,7 @@ const SignUp = () => {
                   <input
                     id="password"
                     type="password"
-                    className="form-control"
+                    className="form-control w-full"
                     required
                     name="password"
                     placeholder="Enter password"
@@ -235,7 +236,7 @@ const SignUp = () => {
                   <input
                     id="referral-id"
                     type="text"
-                    className="form-control"
+                    className="form-control w-full"
                     name="referral-id"
                     placeholder="Referral-ID"
                   />
@@ -304,7 +305,7 @@ const SignUp = () => {
           <h1 className="text-3xl xl:text-4xl mx-4 text-white max-w-md tracking-widest font-light text-center">
             AuthX’s Frictionless Signup/Login Hybrids
           </h1>
-          <img
+          <Image
             className="mt-8 md:mt-10 xl:mt-12 w-3/5"
             src={graphics}
             alt="AuthX pre login"
@@ -399,6 +400,7 @@ const SignUp = () => {
           </div>
         </div>
       </Modal>
+
     </div>
   );
 };

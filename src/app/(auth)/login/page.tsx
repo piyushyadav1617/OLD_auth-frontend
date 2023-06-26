@@ -1,20 +1,20 @@
 "use client"
 import React, { useState, useEffect } from "react";
-import { checkUser } from "../../helper/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { loginToken, loginUser } from "../../redux/Auth/authSlice";
+import { loginToken, loginUser } from "@/redux/Auth/authSlice";
 import { Modal } from "react-bootstrap";
 import OtpInput from "react-otp-input";
-import { AppDispatch } from "../../redux/store";
-import logo from "../../pages/Signup/images/logo.svg"
-import graphic from "../../assets/images/login-graphic.svg"
+import { AppDispatch } from "@/redux/store";
+import logo from "../../../pages/Signup/images/logo.svg"
+import graphic from "../../../assets/images/login-graphic.svg"
 import { EmailComponent } from "./components/EmailComponent";
 import { PasswordComponent } from "./components/PasswordComponent";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { checkUser } from "@/helper/api";
 
 type FormValues = {
   username: string;
