@@ -10,7 +10,7 @@ import OtpInput from "react-otp-input";
 import { AppDispatch } from "@/redux/store";
 import logo from "./images/logo.svg"
 import graphic from "../../../assets/images/login-graphic.svg"
-import { EmailComponent } from "./components/EmailComponent";
+import { EmailComponent } from "../../../components/form/EmailComponent";
 import { PasswordComponent } from "../../../components/form/PasswordComponent";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
