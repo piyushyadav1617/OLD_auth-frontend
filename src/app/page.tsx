@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -6,15 +6,17 @@ import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "react-bootstrap";
 import OtpInput from "react-otp-input";
-;
-import { LOGO } from "@/constants";
+import { LOGIN_GRAPHIC, LOGO } from "@/constants";
 import { checkUser } from "@/helper/api";
 import { loginToken, loginUser } from "@/redux/Auth/authSlice";
 import { useRouter, usePathname } from "next/navigation";
-import { EmailComponent } from "./(auth)/login/components/EmailComponent";
-import { PasswordComponent } from "./(auth)/login/components/PasswordComponent";
+// import { EmailComponent } from "./(auth)/login/components/EmailComponent";
+// import { PasswordComponent } from "./(auth)/login/components/PasswordComponent";
 import { AppDispatch } from "@/redux/store";
 import Image from "next/image";
+import { EmailComponent } from "@/components/form/EmailComponent";
+import { PasswordComponent } from "@/components/form/PasswordComponent";
+PasswordComponent
 
 type FormValues = {
   username: string;
@@ -29,7 +31,10 @@ const Login = () => {
   // email validation
   const asyncEmailValidation = async (email: string) => {
     const activeElement = document.activeElement as HTMLInputElement;
-    if (!activeElement || (activeElement && activeElement?.type === "submit" && isValid)) {
+    if (
+      !activeElement ||
+      (activeElement && activeElement?.type === "submit" && isValid)
+    ) {
       try {
         const response = await checkUser({ emailid: email });
         const { detail } = response;
@@ -85,17 +90,17 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState<FormDataEntryValue>("");
   const dispatch = useDispatch<AppDispatch>();
-  const [otp, setOtp] = useState("")
-  const [customError, setCustomError] = useState<any>("")
+  const [otp, setOtp] = useState("");
+  const [customError, setCustomError] = useState<any>("");
   const router = useRouter();
-  const path: string = usePathname()
+  const path: string | null = usePathname();
 
   useEffect(() => {
     setLoading(true);
 
-    if (path == '/password') {
+    if (path == "/password") {
       if (!getValues().username) {
-        router.push('/')
+        router.push("/");
       }
     }
     if (userToken?.access_token) {
@@ -108,10 +113,11 @@ const Login = () => {
     }
 
     const formData = getValues();
-    if (gAuth && formData.username.length
-      // && 
+    if (
+      gAuth &&
+      formData.username.length
+      // &&
       // formData.password.length
-
     ) {
       const loginAction = loginToken(formData as FormValues);
       dispatch(loginAction);
@@ -189,16 +195,16 @@ const Login = () => {
           const data = {
             username: getValues().username,
             password: pwd,
-            otp: otp
-          }
+            otp: otp,
+          };
           const res = await dispatch(loginToken(data));
           console.log("response from login token ", res);
           if (res["type"] === "auth/loginToken/fulfilled" && !res.payload) {
             setCustomError({
-              "password": {
+              password: {
                 type: "custom",
                 message: "Invalid Password",
-              }
+              },
             });
           } else {
             router.push("/dashboard/page1");
@@ -216,9 +222,9 @@ const Login = () => {
 
   const handleEmailSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // e.preventDefault();
-    console.log(getValues())
-    setCustomError("")
-    router.push('/password')
+    console.log(getValues());
+    setCustomError("");
+    router.push("/password");
   };
 
   const handlePasswordSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -230,24 +236,45 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col sm:flex-row items-center justify-center">
+    <div className="min-h-screen flex flex-col sm:flex-row justify-center">
       <div className="container sm:basis-3/5 flex flex-col min-h-screen">
+        <div className="self-start mt-7">
+          <Image
+            className="w-8"
+            width={34}
+            height={34}
+            src={LOGO}
+            alt="AuthX logo"
+          />
+        </div>
         <div className="self-start ">
-          <Image className="w-full" width="100" height="100" src={LOGO} alt="AuthX logo" />
         </div>
         <div className="flex my-12 items-center justify-center grow sm:mr-12">
-          <div className="mb-32 md:w-96 lg:w-[34rem]">
-            <h1 className="scroll-m-20 text-[2.3rem] text-center pb-9 md:pb-11 font-semibold transition-colors first:mt-0">
+          <div className="-mt-32 w-fit max-w-lg">
+            <Image
+              className="mx-auto mb-8"
+              width={62}
+              height={62}
+              src={LOGO}
+              alt="AuthX logo"
+            />
+            <h1 className="scroll-m-20 text-4xl text-center pb-9 md:pb-11 font-semibold transition-colors first:mt-0">
               Login to your AuthX account
             </h1>
-            {path != "/password" ?
-              <EmailComponent handleEmailSubmit={handleEmailSubmit} register={register} errors={errors} handleSubmit={handleSubmit} /> :
+            {path != "/password" ? (
+              <EmailComponent
+                handleEmailSubmit={handleEmailSubmit}
+                register={register}
+                errors={errors}
+                handleSubmit={handleSubmit}
+              />
+            ) : (
               <PasswordComponent
                 handlePasswordSubmit={handlePasswordSubmit}
                 password={password}
                 errors={customError}
               />
-            }
+            )}
           </div>
         </div>
       </div>
@@ -257,11 +284,11 @@ const Login = () => {
             AuthX: Ensure Security at every level
           </h1>
           <Image
-            className="mt-8 md:mt-10 xl:mt-12 w-3/5 h-auto"
-            src='/login-graphic.svg'
+            className="mt-8 md:mt-10 xl:mt-12 w-3/5 max-h-[65vh]"
+            src={LOGIN_GRAPHIC}
             alt="AuthX pre login"
-            width={340}
-            height={70}
+            width={240}
+            height={400}
           />
         </div>
         <span className="text-white w-full text-right absolute bottom-0 right-0 mb-4 xl:mb-8 mr-6">

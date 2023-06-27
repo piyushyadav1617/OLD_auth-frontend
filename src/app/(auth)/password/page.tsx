@@ -13,8 +13,8 @@ import graphic from "../../../assets/images/login-graphic.svg"
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import { checkUser } from "@/helper/api";
-import { EmailComponent } from "../login/components/EmailComponent";
-import { PasswordComponent } from "../login/components/PasswordComponent";
+import { EmailComponent } from "@/components/form/EmailComponent";
+import { PasswordComponent } from "@/components/form/PasswordComponent";
 
 type FormValues = {
     username: string;
