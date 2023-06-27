@@ -10,10 +10,13 @@ import { LOGIN_GRAPHIC, LOGO } from "@/constants";
 import { checkUser } from "@/helper/api";
 import { loginToken, loginUser } from "@/redux/Auth/authSlice";
 import { useRouter, usePathname } from "next/navigation";
-import { EmailComponent } from "@/components/form/EmailComponent";
-import { PasswordComponent } from "@/components/form/PasswordComponent";
+// import { EmailComponent } from "./(auth)/login/components/EmailComponent";
+// import { PasswordComponent } from "./(auth)/login/components/PasswordComponent";
 import { AppDispatch } from "@/redux/store";
 import Image from "next/image";
+import { EmailComponent } from "@/components/form/EmailComponent";
+import { PasswordComponent } from "@/components/form/PasswordComponent";
+PasswordComponent
 
 type FormValues = {
   username: string;
