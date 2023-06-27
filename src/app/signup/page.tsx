@@ -1,7 +1,8 @@
 "use client";
+
 import { SIGNUP_GRAPHIC } from "@/constants";
 import { LOGO } from "@/constants";
-import React, { useState, useEffect, ReactNode } from "react";
+import React, { useState, useEffect, ReactNode, ReactPropTypes } from "react";
 import { LuXCircle } from "react-icons/lu";
 import { FaAngleRight } from "react-icons/fa";
 import Link from "next/link";
@@ -15,6 +16,8 @@ import { createRipple } from "../../helper/createRipple";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useRouter } from "next/navigation";
+import { FormButton } from "@/components/form/FormButton";
+import { LinkText } from "@/components/form/LinkText";
 
 // TS types
 type RequestObjectType = {
@@ -48,14 +51,6 @@ const registerSchema = yup
       .oneOf([true], "Please accept our Terms of Service and Privacy policy"),
   })
   .required();
-
-const LinkText = ({ children }: { children: ReactNode }) => {
-  return (
-    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2DC0FF] via-[#D478FF] to-[#FF41D5]">{children}</span>
-  );
-};
-
-// #2DC0FF, #D478FF, #FF41D5
 
 // TODO: debounce I have not received email button
 const SignUp = () => {
@@ -225,7 +220,7 @@ const SignUp = () => {
               src={LOGO}
               alt="AuthX logo"
             />
-            <h1 className="scroll-m-20 text-[2.5rem] text-center pb-9 md:pb-11 font-semibold transition-colors first:mt-0">
+            <h1 className="text-4xl text-center pb-9 md:pb-11 font-semibold transition-colors first:mt-0">
               Create a new AuthX account
             </h1>
 
@@ -237,7 +232,9 @@ const SignUp = () => {
                 <div className="form-group relative">
                   <label
                     htmlFor="email"
-                    className="form-label absolute translate-x-6 translate-y-[-12px] bg-white px-2"
+                    className={`form-label absolute translate-x-6 translate-y-[-12px] bg-white px-2 ${
+                      errors.username && "text-red-600"
+                    }`}
                   >
                     Email
                   </label>
@@ -245,7 +242,9 @@ const SignUp = () => {
                     {...register("username")}
                     id="email"
                     type="text"
-                    className="form-control w-full px-8 py-3 border border-slate-500 rounded-md"
+                    className={`form-control w-full px-8 py-3 border rounded-lg ${
+                      errors.username ? "border-red-600" : "border-slate-500"
+                    }`}
                     placeholder="name@example.com"
                   />
                   <ErrorMessage
@@ -260,7 +259,9 @@ const SignUp = () => {
                 <div className="form-group mt-8 md:mt-11 relative">
                   <label
                     htmlFor="password"
-                    className="form-label absolute translate-x-6 translate-y-[-12px] bg-white px-2"
+                    className={`form-label absolute translate-x-6 translate-y-[-12px] bg-white px-2 ${
+                      errors.password && "text-red-600"
+                    }`}
                   >
                     Password
                   </label>
@@ -268,8 +269,8 @@ const SignUp = () => {
                     {...register("password")}
                     id="password"
                     type="password"
-                    className={`form-control w-full px-8 py-3 border border-slate-500 rounded-md ${
-                      errors.password && "border-red"
+                    className={`form-control w-full px-8 py-3 border rounded-lg ${
+                      errors.password ? "border-red-600" : "border-slate-500"
                     }`}
                     placeholder="Enter password"
                   />
@@ -293,24 +294,22 @@ const SignUp = () => {
                     {...register("referral-id")}
                     id="referral-id"
                     type="text"
-                    className="form-control w-full px-8 py-3 border border-slate-500 rounded-md"
+                    className="form-control w-full px-8 py-3 border border-slate-500 rounded-lg"
                     placeholder="Referral-ID"
                   />
                 </div>
 
                 <div className="form-group">
                   <div className="d-grid start">
-                    <button
-                      type="submit"
-                      onClick={createRipple}
-                      className="ripple-button btn btn-spl-primary mt-8 md:mt-11 btn-ca bg-gradient-to-r from-black to-[#6F6F6F] flex items-center justify-center"
-                    >
-                      <span>Next</span>
+                    <FormButton>
+                      <span className="text-2xl font-semibold tracking-widest">
+                        Next
+                      </span>
                       <span className="forward-arr">
                         {" "}
                         <FaAngleRight className="ca-forward-arr text-2xl mt-[2px]" />
                       </span>
-                    </button>
+                    </FormButton>
                   </div>
                 </div>
 
@@ -319,7 +318,9 @@ const SignUp = () => {
                     {...register("agreeTerms")}
                     id="terms"
                     type="checkbox"
-                    className="checkbox-customized w-7 h-7 cursor-pointer"
+                    className={`checkbox-customized w-7 h-7 cursor-pointer ${
+                      errors.agreeTerms && "border-red-600"
+                    }`}
                   />
                   <label
                     htmlFor="terms"
@@ -350,7 +351,7 @@ const SignUp = () => {
                       className="a-t-s a-link pl-2 text-xl flex items-center"
                       href="/"
                     >
-                      <LinkText>advance to Login</LinkText> 
+                      <LinkText>advance to Login</LinkText>
                       <span className="forward-arr arr-black">
                         {" "}
                         <FaAngleRight className="pt-1 text-2xl" />
@@ -416,7 +417,7 @@ const SignUp = () => {
                     className="mt-16 p-0 bg-transparent font-['Lexend'] font-normal down-button"
                     onClick={resendEmail}
                   >
-                    I didn't receive Email
+                    I didn&apos;t receive Email
                     <span className="modal-arr pl-2">›</span>
                   </button>
                 </div>

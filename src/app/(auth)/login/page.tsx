@@ -9,7 +9,7 @@ import { Modal } from "react-bootstrap";
 import OtpInput from "react-otp-input";
 import { AppDispatch } from "@/redux/store";
 import { EmailComponent } from "./components/EmailComponent";
-import { PasswordComponent } from "./components/PasswordComponent";
+import { PasswordComponent } from "../../../components/form/PasswordComponent";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { checkUser } from "@/helper/api";
