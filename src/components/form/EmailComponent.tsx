@@ -2,6 +2,9 @@ import React from "react";
 import { FaAngleRight } from "react-icons/fa";
 import Link from "next/link";
 import { createRipple } from "@/helper/createRipple";
+import { FormButton } from "./FormButton";
+import { LinkText } from "./LinkText";
+import { Input } from "@/components/ui/Input";
 
 type EmailSubmitType = {
   handleEmailSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -26,17 +29,19 @@ export const EmailComponent = ({
         <div className="form-group relative">
           <label
             htmlFor="email"
-            className="form-label absolute translate-x-6 translate-y-[-12px] bg-white px-1"
+            className={`form-label absolute translate-x-6 translate-y-[-12px] bg-white px-2 ${
+              errors.username && "text-red-600"
+            }`}
           >
             Email
           </label>
           <input
-            {...register("username", { required: true })}
+            {...register("username")}
             id="email"
             type="text"
-            name="username"
-            className="form-control w-full"
-            required
+            className={`form-control w-full px-8 py-3 border rounded-lg ${
+              errors.username ? "border-red-600" : "border-slate-500"
+            }`}
             placeholder="name@example.com"
           />
           {errors.username && (
@@ -48,17 +53,12 @@ export const EmailComponent = ({
 
         <div className="form-group">
           <div className="d-grid start">
-            <button
-              type="submit"
-              onClick={createRipple}
-              className="ripple-button btn btn-spl-primary mt-8 md:mt-11 btn-ca bg-gradient-to-r from-black to-[#6F6F6F] flex items-center justify-center"
-            >
-              <span>Next</span>
-              <span className="forward-arr">
-                {" "}
+            <FormButton>
+              <span className="text-2xl font-semibold tracking-widest">Next</span>
+              <span>
                 <FaAngleRight className="ca-forward-arr text-2xl mt-[2px]" />
               </span>
-            </button>
+            </FormButton>
           </div>
         </div>
 
@@ -66,12 +66,11 @@ export const EmailComponent = ({
           <p className="mb-0 text-xl flex items-center flex-wrap">
             I don’t have an AuthX account
             <Link
-              className="pl-2 a-t-s a-link text-xl flex items-center"
-              href="/sign-up"
+              className="a-t-s a-link pl-2 text-xl flex items-center"
+              href="/signup"
             >
-              advance to Signup{" "}
+              <LinkText>advance to Signup</LinkText>
               <span className="forward-arr arr-black">
-                {" "}
                 <FaAngleRight className="pt-1 text-2xl" />
               </span>
             </Link>

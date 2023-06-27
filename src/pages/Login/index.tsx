@@ -6,7 +6,6 @@ import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { loginToken, loginUser } from "../../redux/Auth/authSlice";
 import { useNavigate } from "react-router-dom";
-import { Modal } from "react-bootstrap";
 import OtpInput from "react-otp-input";
 import { AppDispatch } from "../../redux/store";
 import logo from "../Signup/images/logo.svg";
@@ -14,6 +13,7 @@ import graphic from "./images/login-graphic.svg";
 import { EmailComponent } from "./components/EmailComponent";
 import { PasswordComponent } from "./components/PasswordComponent";
 import { useLocation } from "react-router-dom";
+import Modal from "@/components/Modal";
 
 type FormValues = {
   username: string;

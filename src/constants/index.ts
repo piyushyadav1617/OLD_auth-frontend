@@ -1,4 +1,6 @@
 const LOGO = '/logo.svg'
+export const LOGIN_GRAPHIC = '/login-graphic.svg';
+export const SIGNUP_GRAPHIC = '/signup-graphic.svg';
 export const API_DOMAIN = 'https://api.trustauthx.com';
 const FIREBASE_API_KEY = "AIzaSyD9-xgz9FYET9nVocqKmfPqWeOShtDw5AY";
 const FIREBASE_AUTH_DOMAIN = "auth-77872.firebaseapp.com";

@@ -68,7 +68,7 @@ export const EmailComponent = ({
             I don’t have an AuthX account
             <Link
               className="pl-2 a-t-s a-link text-xl flex items-center"
-              href="/sign-up"
+              href="/signup"
             >
               <span className="bg-gradient-to-r bg-clip-text text-transparent from-blue-400 to to-pink-400" >
                 advance to Signup{" "}

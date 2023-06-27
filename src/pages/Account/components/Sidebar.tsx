@@ -19,6 +19,19 @@ export function Sidebar() {
         }
     }, [windowWidth])
 
+    // Add event listener to window object for resizing window
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        }
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        }
+    }, [])
+
     return (
         <div className='' >
             <ProSidebar className='w-full flex-[15%] min-h-screen bg-black ' collapsed={collapse} >
