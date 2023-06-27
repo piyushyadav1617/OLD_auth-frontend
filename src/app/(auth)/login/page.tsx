@@ -13,7 +13,7 @@ import graphic from "../../../assets/images/login-graphic.svg"
 import { EmailComponent } from "./components/EmailComponent";
 import { PasswordComponent } from "./components/PasswordComponent";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { checkUser } from "@/helper/api";
 
 type FormValues = {
@@ -88,15 +88,17 @@ const Login = () => {
   const [otp, setOtp] = useState("")
   const [customError, setCustomError] = useState<any>("")
   const router = useRouter();
-  const [path, setPath] = useState("")
+  // const [path, setPath] = usePathname()
+  const path = usePathname()
+
 
   // const path: string = router.pathname;
-  useEffect(() => {
-    if (router) {
-      setPath(router.pathname)
-    }
+  // useEffect(() => {
+  //   if (router) {
+  //     setPath(router.pathname)
+  //   }
 
-  }, [router])
+  // }, [router])
 
 
   useEffect(() => {
@@ -250,7 +252,13 @@ const Login = () => {
             <h1 className="scroll-m-20 text-[2.5rem] text-center pb-9 md:pb-11 font-semibold transition-colors first:mt-0">
               Login to your AuthX account
             </h1>
-            {path != "/password" ? <EmailComponent handleEmailSubmit={handleEmailSubmit} register={register} errors={errors} handleSubmit={handleSubmit} /> :
+            {path != "/password" ?
+              <EmailComponent
+                handleEmailSubmit={handleEmailSubmit}
+                register={register}
+                errors={errors}
+                handleSubmit={handleSubmit} />
+              :
               <PasswordComponent
                 handlePasswordSubmit={handlePasswordSubmit}
                 password={password}
