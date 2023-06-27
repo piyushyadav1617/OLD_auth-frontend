@@ -2,6 +2,7 @@ import React from "react";
 import { FaAngleRight } from "react-icons/fa";
 import Link from "next/link";
 import { createRipple } from "@/helper/createRipple";
+import { Input } from "@/components/ui/Input";
 
 type EmailSubmitType = {
   handleEmailSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -21,7 +22,7 @@ export const EmailComponent = ({
     <div className="login-wrapper form-wrapper">
       <form
         onSubmit={handleSubmit(handleEmailSubmit)}
-        // className="was-validated"
+      // className="was-validated"
       >
         <div className="form-group relative">
           <label
@@ -30,7 +31,7 @@ export const EmailComponent = ({
           >
             Email
           </label>
-          <input
+          <Input
             {...register("username", { required: true })}
             id="email"
             type="text"
@@ -51,10 +52,10 @@ export const EmailComponent = ({
             <button
               type="submit"
               onClick={createRipple}
-              className="ripple-button btn btn-spl-primary mt-8 md:mt-11 btn-ca bg-gradient-to-r from-black to-[#6F6F6F] flex items-center justify-center"
+              className="ripple-button btn btn-spl-primary mt-8 md:mt-11 btn-ca bg-gradient-to-r from-black to-[#6F6F6F] flex items-center justify-center px-8 py-2 rounded-md text-whtie w-full text-center"
             >
-              <span>Next</span>
-              <span className="forward-arr">
+              <span className="text-white text-2xl" >Next</span>
+              <span className="text-white ">
                 {" "}
                 <FaAngleRight className="ca-forward-arr text-2xl mt-[2px]" />
               </span>
@@ -69,10 +70,11 @@ export const EmailComponent = ({
               className="pl-2 a-t-s a-link text-xl flex items-center"
               href="/sign-up"
             >
-              advance to Signup{" "}
-              <span className="forward-arr arr-black">
-                {" "}
-                <FaAngleRight className="pt-1 text-2xl" />
+              <span className="bg-gradient-to-r bg-clip-text text-transparent from-blue-400 to to-pink-400" >
+                advance to Signup{" "}
+                <span className="font-bold text-xl align-middle text-black" >
+                  &gt;
+                </span>
               </span>
             </Link>
           </p>

@@ -23,7 +23,7 @@ const Payment = () => {
             "theme": {
                 "color": "#3399cc"
             },
-            handler: function(response){
+            handler: function (response) {
                 console.log(response);
             }
         };
@@ -31,9 +31,9 @@ const Payment = () => {
         rzp.open();
     }
 
-    return(
+    return (
         <>
-        <button onClick={handlePayment}>Pay</button>
+            <button onClick={handlePayment}>Pay</button>
         </>
     )
 }

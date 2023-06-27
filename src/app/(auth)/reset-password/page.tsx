@@ -1,32 +1,22 @@
 "use client"
 import React, { useState } from 'react';
-
-// import { createSearchParams } from 'react-router-dom';
 import { FaAngleRight } from "react-icons/fa";
-
-
 import logo from './logo.svg';
 import image from './group.svg';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 
 const PasswordReset: React.FC = () => {
   const router = useRouter();
   const [email, setEmail] = useState('');
 
+
   const handleForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (email.length > 0) {
-      const queryParams = new URLSearchParams({ email });
-      const queryString = queryParams.toString();
-      // router.push({
-      //   pathname: '/new-password',
-      //   search: queryString,
-      // });
-      router.push("/new-password")
-    } else {
-      // Handle empty email case
+      const encodedParam = encodeURIComponent(email);
+      router.push(`/new-password?param=${encodedParam}`);
     }
   };
 
