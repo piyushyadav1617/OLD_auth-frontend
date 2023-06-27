@@ -6,7 +6,6 @@ import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "react-bootstrap";
 import OtpInput from "react-otp-input";
-;
 import { LOGO } from "@/constants";
 import { checkUser } from "@/helper/api";
 import { loginToken, loginUser } from "@/redux/Auth/authSlice";
@@ -88,7 +87,7 @@ const Login = () => {
   const [otp, setOtp] = useState("")
   const [customError, setCustomError] = useState<any>("")
   const router = useRouter();
-  const path: string = usePathname()
+  const path: string | null = usePathname()
 
   useEffect(() => {
     setLoading(true);

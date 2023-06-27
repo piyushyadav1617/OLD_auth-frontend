@@ -8,8 +8,6 @@ import { loginToken, loginUser } from "@/redux/Auth/authSlice";
 import { Modal } from "react-bootstrap";
 import OtpInput from "react-otp-input";
 import { AppDispatch } from "@/redux/store";
-import logo from "../../../pages/Signup/images/logo.svg"
-import graphic from "../../../assets/images/login-graphic.svg"
 import { EmailComponent } from "./components/EmailComponent";
 import { PasswordComponent } from "./components/PasswordComponent";
 import Image from "next/image";
@@ -243,7 +241,7 @@ const Login = () => {
     <div className="min-h-screen flex flex-col sm:flex-row items-center justify-center">
       <div className="container sm:basis-3/5 flex flex-col min-h-screen">
         <div className="self-start mt-7">
-          <Image src={logo} alt="AuthX logo" />
+          <Image src="/logo.svg" alt="AuthX logo" />
         </div>
         <div className="flex my-12 items-center justify-center grow sm:mr-12">
           <div className="mb-32 md:w-96 lg:w-[32rem]">
@@ -267,7 +265,7 @@ const Login = () => {
           </h1>
           <Image
             className="mt-8 md:mt-10 xl:mt-12 w-3/5"
-            src={graphic}
+            src="/login-graphic.svg"
             alt="AuthX pre login"
             width={340}
           />
