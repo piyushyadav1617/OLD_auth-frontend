@@ -8,7 +8,7 @@ import { loginToken, loginUser } from "@/redux/Auth/authSlice";
 import { Modal } from "react-bootstrap";
 import OtpInput from "react-otp-input";
 import { AppDispatch } from "@/redux/store";
-import logo from "../../../pages/Signup/images/logo.svg"
+import logo from "./images/logo.svg"
 import graphic from "../../../assets/images/login-graphic.svg"
 import { EmailComponent } from "./components/EmailComponent";
 import { PasswordComponent } from "./components/PasswordComponent";

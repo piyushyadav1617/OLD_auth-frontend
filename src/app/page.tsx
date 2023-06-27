@@ -11,8 +11,8 @@ import { LOGO } from "@/constants";
 import { checkUser } from "@/helper/api";
 import { loginToken, loginUser } from "@/redux/Auth/authSlice";
 import { useRouter, usePathname } from "next/navigation";
-import { EmailComponent } from "@/pages/Login/components/EmailComponent";
-import { PasswordComponent } from "@/pages/Login/components/PasswordComponent";
+import { EmailComponent } from "./(auth)/login/components/EmailComponent";
+import { PasswordComponent } from "./(auth)/login/components/PasswordComponent";
 import { AppDispatch } from "@/redux/store";
 import Image from "next/image";
 

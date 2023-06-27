@@ -2,13 +2,13 @@
 import React, { useState, useEffect } from "react";
 import { LuXCircle } from "react-icons/lu";
 import { FaAngleRight } from "react-icons/fa";
-// import { useNavigate } from "react-router-dom";
+
 import { Modal } from "react-bootstrap";
 import logo from "./images/logo.svg";
 import graphics from "./images/signup-graphic.svg";
 import OtpInput from "react-otp-input";
-import { Alert, AlertDescription, AlertTitle } from "../../components/ui/alert";
-import { createRipple } from "../../helper/createRipple";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { createRipple } from "@/helper/createRipple";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -28,7 +28,7 @@ type RequestObjectType = {
 // Remove bootstrap components
 // Add email validation
 const SignUp = () => {
-  const navigate = useRouter();
+  const router = useRouter();
 
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -108,7 +108,7 @@ const SignUp = () => {
       .then((data) => {
         setLoading(false);
         if (data.status === 200 && data.is_ok === true) {
-          navigate("/");
+          router.push("/");
         }
         if (data.detail) {
           setAlertMessage(data.detail);
