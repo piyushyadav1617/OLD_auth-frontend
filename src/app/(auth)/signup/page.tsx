@@ -6,13 +6,17 @@ import React, { useState, useEffect, ReactNode, ReactPropTypes } from "react";
 import { LuXCircle } from "react-icons/lu";
 import { FaAngleRight } from "react-icons/fa";
 import Link from "next/link";
-import Modal from "../../components/Modal";
+import Modal from "../../../components/Modal";
 import Image from "next/image";
 import OtpInput from "react-otp-input";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Alert, AlertDescription, AlertTitle } from "../../components/ui/alert";
-import { createRipple } from "../../helper/createRipple";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "../../../components/ui/alert";
+import { createRipple } from "../../../helper/createRipple";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useRouter } from "next/navigation";
@@ -301,15 +305,7 @@ const SignUp = () => {
 
                 <div className="form-group">
                   <div className="d-grid start">
-                    <FormButton>
-                      <span className="text-2xl font-semibold tracking-widest">
-                        Next
-                      </span>
-                      <span className="forward-arr">
-                        {" "}
-                        <FaAngleRight className="ca-forward-arr text-2xl mt-[2px]" />
-                      </span>
-                    </FormButton>
+                    <FormButton>Next</FormButton>
                   </div>
                 </div>
 
@@ -347,16 +343,9 @@ const SignUp = () => {
                 <div className="ats-content mt-8 md:mt-11">
                   <p className="mb-0 text-xl flex items-center flex-wrap">
                     I already have an AuthX account
-                    <Link
-                      className="a-t-s a-link pl-2 text-xl flex items-center"
-                      href="/"
-                    >
-                      <LinkText>advance to Login</LinkText>
-                      <span className="forward-arr arr-black">
-                        {" "}
-                        <FaAngleRight className="pt-1 text-2xl" />
-                      </span>
-                    </Link>
+                    <LinkText to="/">
+                      advance to Login
+                    </LinkText>
                   </p>
                 </div>
               </form>
@@ -377,7 +366,7 @@ const SignUp = () => {
             height={400}
           />
         </div>
-        <span className="text-white w-full text-right absolute bottom-0 right-0 mb-4 xl:mb-8 mr-6">
+        <span className="text-white w-full text-center sm:text-right absolute bottom-0 right-0 mb-4 xl:mb-8 sm:mr-6">
           © 2023 TrustAuthx. All rights reserved.
         </span>
       </div>
