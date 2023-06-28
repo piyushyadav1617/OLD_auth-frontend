@@ -12,7 +12,7 @@ export interface IInitialState {
   userToken: null,
   user: null,
   loginString: string | null,
-  verifyString: null,
+  verifyString: null | unknown,
   userExistStatus: null | boolean
 }
 
