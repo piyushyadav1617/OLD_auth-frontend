@@ -112,7 +112,7 @@ const NewPassword: React.FC = () => {
                     }
                     `}
                   >
-                    New Password
+                    Password
                   </label>
                   <input
                     // {...register("password")}
@@ -123,7 +123,7 @@ const NewPassword: React.FC = () => {
                       ""
                       // errors.password ? "border-red-600" : "border-slate-500"
                     }`}
-                    placeholder="xxxxxxxxx"
+                    placeholder="Enter Password"
                     onChange={(e) => setPass(e.target.value)}
                   />
                   {/* {errors.password && (
