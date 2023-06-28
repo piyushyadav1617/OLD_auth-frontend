@@ -237,14 +237,11 @@ const Login = () => {
       <div className="container sm:basis-3/5 flex flex-col min-h-screen">
         <div className="self-start mt-7">
           <Image
-            className="w-8"
             width={34}
             height={34}
             src={LOGO}
             alt="AuthX logo"
           />
-        </div>
-        <div className="self-start ">
         </div>
         <div className="flex my-12 items-center justify-center grow sm:mr-12">
           <div className="-mt-32 w-fit max-w-lg">
