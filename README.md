@@ -18,7 +18,7 @@ Make sure you have the following installed in your system:
 - Create a new branch `git checkout -b <branch_name>`
 - Run `npm run dev` and start developing
 
-**Note:** Always make PRs to the `next-app` branch and **NOT** the `main` branch
+**Note:** Always make PRs to the `next-app` branch & **NOT** the `main` branch
 
 AuthX API: [https://api.trustauthx.com/docs](https://api.trustauthx.com/docs)
 
