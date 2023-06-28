@@ -98,7 +98,7 @@ const NewPassword: React.FC = () => {
               alt="AuthX logo"
             />
             <h1 className="scroll-m-20 text-4xl text-left pb-9 md:pb-11 font-semibold transition-colors first:mt-0">
-              Reset Password
+              Enter a New Password
             </h1>
             <div className="login-wrapper form-wrapper">
               <form onSubmit={handleForm}>
