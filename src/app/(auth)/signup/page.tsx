@@ -17,8 +17,10 @@ import {
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useRouter } from "next/navigation";
-import { FormButton } from "@/components/form/FormButton";
-import { LinkText } from "@/components/form/LinkText";
+import { FormButton } from "@/components/authForm/FormButton";
+import { LinkText } from "@/components/authForm/LinkText";
+import LoadingModal from "@/components/authForm/LoadingModal";
+import LayoutBanner from "@/components/authForm/LayoutBanner";
 
 // TS types
 type RequestObjectType = {
@@ -139,10 +141,15 @@ const SignUp = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         setLoading(false);
         if (data.status === 200 && data.is_ok === true) {
           setShow(false);
           router.push("/");
+        }
+        if (data.is_ok === false) {
+          setAlertMessage(data.msg);
+          setAlert(true);
         }
         if (data.detail) {
           setAlertMessage(data.detail);
@@ -340,9 +347,7 @@ const SignUp = () => {
                 <div className="ats-content mt-8 md:mt-11">
                   <p className="mb-0 text-xl flex items-center flex-wrap">
                     I already have an AuthX account
-                    <LinkText to="/">
-                      advance to Login
-                    </LinkText>
+                    <LinkText to="/">advance to Login</LinkText>
                   </p>
                 </div>
               </form>
@@ -350,35 +355,27 @@ const SignUp = () => {
           </div>
         </div>
       </div>
-      <div className="bg-black min-h-screen w-full sm:basis-2/5 relative flex flex-col justify-center">
-        <div className="flex flex-col items-center my-10 md:mt-12">
-          <h1 className="text-3xl xl:text-4xl mx-4 text-white max-w-md tracking-widest font-light text-center">
-            AuthX’s Frictionless Signup/Login Hybrids
-          </h1>
-          <Image
-            className="mt-8 md:mt-10 xl:mt-12 w-3/5 max-h-[65vh]"
-            src={SIGNUP_GRAPHIC}
-            alt="AuthX pre login"
-            width={240}
-            height={400}
-          />
-        </div>
-        <span className="text-white w-full text-center sm:text-right absolute bottom-0 right-0 mb-4 xl:mb-8 sm:mr-6">
-          © 2023 TrustAuthx. All rights reserved.
-        </span>
-      </div>
+      <LayoutBanner
+        bannerText="AuthX’s Frictionless Signup/Login Hybrids"
+        src={SIGNUP_GRAPHIC}
+      />
 
       {alert && <AlertMessage message={alertMessage} />}
 
       <Modal show={show}>
-        <div className="bg-white max-w-3xl mt-4 mb-12 rounded-3xl p-12 md:p-16">
+        <div className="bg-white max-w-3xl mt-4 mb-12 mx-8 rounded-3xl p-12 md:p-16">
           <p className="font-light text-center">
             Please check your email for a registration link or OTP. You can
             register any way by clicking on the{" "}
-            <span className="text_design">link in E-mail </span>or{" "}
-            <span className="text_design">by entering OTP </span>in the
-            designated column. If you didn't receive an email, you can
-            click I didn't receive any email.
+            <span className="bg-gradient-to-r text-transparent bg-clip-text from-[#2932FF] to-[#589BFF] ">
+              link in E-mail{" "}
+            </span>
+            or{" "}
+            <span className="bg-gradient-to-r text-transparent bg-clip-text from-[#589BFF] to-[#2932FF]">
+              by entering OTP{" "}
+            </span>
+            in the designated column. If you didn't receive an email, you can
+            click "Resend Email".
           </p>
           <div className="row">
             <div className="col-lg-2"></div>
@@ -389,7 +386,7 @@ const SignUp = () => {
                 </div>
                 <OtpInput
                   containerStyle="flex justify-center gap-1"
-                  inputStyle="otp-input-width h-12 p-0 text-center rounded-xl"
+                  inputStyle="otp-input-width !w-8 md:!w-12 h-12 p-0 text-center border border-slate-500 rounded-xl"
                   value={otp}
                   onChange={setOtp}
                   numInputs={8}
@@ -400,11 +397,13 @@ const SignUp = () => {
               <div className="row">
                 <div className="col-lg-10 text-start">
                   <button
-                    className="mt-16 p-0 bg-transparent font-['Lexend'] font-normal down-button"
+                    className="group mt-16 p-0 bg-transparent font-mono font-normal"
                     onClick={resendEmail}
                   >
-                    I didn't receive Email
-                    <span className="modal-arr pl-2">›</span>
+                    Resend Email
+                    <span className="inline-block group-hover:translate-x-2 ease-in duration-300 pl-2">
+                      ›
+                    </span>
                   </button>
                 </div>
                 <div className="col-lg-2"></div>
@@ -415,30 +414,7 @@ const SignUp = () => {
         </div>
       </Modal>
 
-      <Modal show={loading}>
-        <div className="mb-12">
-          <svg
-            className="animate-spin w-14 h-14 -ml-1 mr-3 text-white"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <circle
-              className="opacity-25"
-              cx="12"
-              cy="12"
-              r="10"
-              stroke="currentColor"
-              strokeWidth="4"
-            ></circle>
-            <path
-              className="opacity-75"
-              fill="currentColor"
-              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-            ></path>
-          </svg>
-        </div>
-      </Modal>
+      <LoadingModal show={loading} />
     </div>
   );
 };

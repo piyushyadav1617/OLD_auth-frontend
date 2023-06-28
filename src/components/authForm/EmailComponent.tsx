@@ -1,10 +1,6 @@
 import React from "react";
-import { FaAngleRight } from "react-icons/fa";
-import Link from "next/link";
-import { createRipple } from "@/helper/createRipple";
 import { FormButton } from "./FormButton";
 import { LinkText } from "./LinkText";
-import { Input } from "@/components/ui/Input";
 
 type EmailSubmitType = {
   handleEmailSubmit: (e: React.FormEvent<HTMLFormElement>) => void;

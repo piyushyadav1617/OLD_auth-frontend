@@ -58,8 +58,8 @@ const Modal: React.FC<ModalProps> = ({ handleForm, add }) => {
         <h2 className="text-2xl m-4">Enter e-mail OTP</h2>
 
         <OtpInput
-          containerStyle="grid grid-cols-2 justify-center gap-1 md:gap-4"
-          inputStyle="modal-otp-width w-[80px] h-8 sm:h-9 md:h-10 p-0 text-center rounded-xl tex "
+          containerStyle="grid grid-cols-2 justify-center gap-1 md:gap-2"
+          inputStyle="!w-8 md:!w-12 border border-slate-500 sm:h-9 md:h-12 p-0 text-center rounded-xl"
           value={otp}
           onChange={setOtp}
           numInputs={8}
