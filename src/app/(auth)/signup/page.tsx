@@ -322,7 +322,7 @@ const SignUp = () => {
                     htmlFor="terms"
                     className="ml-5 text-sm font-medium tracking-[.13em] leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   >
-                    I have read and agree to Flitchcoin&apos;s{" "}
+                    I have read and agree to Flitchcoin's
                     <a className="underline underline-offset-2" href="#">
                       Terms of Service
                     </a>{" "}
@@ -380,8 +380,8 @@ const SignUp = () => {
             register any way by clicking on the{" "}
             <span className="text_design">link in E-mail </span>or{" "}
             <span className="text_design">by entering OTP </span>in the
-            designated column. If you didn&apos;t receive an email, you can
-            click I didn&apos;t receive any email.
+            designated column. If you didn't receive an email, you can
+            click I didn't receive any email.
           </p>
           <div className="row">
             <div className="col-lg-2"></div>
@@ -406,7 +406,7 @@ const SignUp = () => {
                     className="mt-16 p-0 bg-transparent font-['Lexend'] font-normal down-button"
                     onClick={resendEmail}
                   >
-                    I didn&apos;t receive Email
+                    I didn't receive Email
                     <span className="modal-arr pl-2">›</span>
                   </button>
                 </div>
