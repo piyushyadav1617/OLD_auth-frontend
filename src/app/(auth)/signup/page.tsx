@@ -20,6 +20,7 @@ import { useRouter } from "next/navigation";
 import { FormButton } from "@/components/authForm/FormButton";
 import { LinkText } from "@/components/authForm/LinkText";
 import LoadingModal from "@/components/authForm/LoadingModal";
+import LayoutBanner from "@/components/authForm/LayoutBanner";
 
 // TS types
 type RequestObjectType = {
@@ -354,23 +355,10 @@ const SignUp = () => {
           </div>
         </div>
       </div>
-      <div className="bg-black min-h-screen w-full sm:basis-2/5 relative flex flex-col justify-center">
-        <div className="flex flex-col items-center my-10 md:mt-12">
-          <h1 className="text-3xl xl:text-4xl mx-4 text-white max-w-md tracking-widest font-light text-center">
-            AuthX’s Frictionless Signup/Login Hybrids
-          </h1>
-          <Image
-            className="mt-8 md:mt-10 xl:mt-12 w-3/5 max-h-[65vh]"
-            src={SIGNUP_GRAPHIC}
-            alt="AuthX pre login"
-            width={240}
-            height={400}
-          />
-        </div>
-        <span className="text-white w-full text-center sm:text-right absolute bottom-0 right-0 mb-4 xl:mb-8 sm:mr-6">
-          © 2023 TrustAuthx. All rights reserved.
-        </span>
-      </div>
+      <LayoutBanner
+        bannerText="AuthX’s Frictionless Signup/Login Hybrids"
+        src={SIGNUP_GRAPHIC}
+      />
 
       {alert && <AlertMessage message={alertMessage} />}
 

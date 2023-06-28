@@ -5,16 +5,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { loginToken, loginUser } from "@/redux/Auth/authSlice";
-import { Modal } from "react-bootstrap";
+import Modal from "@/components/Modal";
 import OtpInput from "react-otp-input";
 import { AppDispatch } from "@/redux/store";
 import logo from "../login/images/logo.svg";
-import graphic from "../../../assets/images/login-graphic.svg";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import { checkUser } from "@/helper/api";
 import { EmailComponent } from "@/components/authForm/EmailComponent";
 import { PasswordComponent } from "@/components/authForm/PasswordComponent";
+import LayoutBanner from "@/components/authForm/LayoutBanner";
+import { LOGIN_GRAPHIC } from "@/constants";
 
 type FormValues = {
   username: string;
@@ -271,31 +272,12 @@ const Password = () => {
           </div>
         </div>
       </div>
-      <div className="bg-black min-h-screen w-full sm:basis-2/5 relative">
-        <div className="flex flex-col items-center my-10 md:mt-12">
-          <h1 className="text-3xl xl:text-4xl mx-4 text-white max-w-md tracking-widest font-light text-center">
-            AuthX: Ensure Security at every level
-          </h1>
-          <Image
-            className="mt-8 md:mt-10 xl:mt-12 w-3/5"
-            src={graphic}
-            alt="AuthX pre login"
-            width={340}
-            priority
-          />
-        </div>
-        <span className="text-white w-full text-right absolute bottom-0 right-0 mb-4 xl:mb-8 mr-6">
-          © 2023 TrustAuthx. All rights reserved.
-        </span>
-      </div>
+      <LayoutBanner
+        bannerText="AuthX: Ensure Security at every level"
+        src={LOGIN_GRAPHIC}
+      />
 
-      <Modal
-        show={show}
-        onHide={() => setShow(false)}
-        backdrop="static"
-        keyboard={false}
-        className="modal-dialog-login"
-      >
+      <Modal show={show}>
         <div className="bg-white rounded-3xl p-16 mt-[20vh] w-max self-center">
           <div>
             <div className="">
