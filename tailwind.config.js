@@ -18,6 +18,7 @@ module.exports = {
     extend: {
       fontFamily: {
         inter: ['Inter', 'sans-serif'],
+        lexend: ['Lexend', 'mono']
       },
       keyframes: {
         "accordion-down": {

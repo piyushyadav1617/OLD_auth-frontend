@@ -5,8 +5,8 @@ import { LOGIN_GRAPHIC, LOGO } from "@/constants";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Modal from "../reset-password/otpModal";
-import { FormButton } from "@/components/form/FormButton";
-import { LinkText } from "@/components/form/LinkText";
+import { FormButton } from "@/components/authForm/FormButton";
+import { LinkText } from "@/components/authForm/LinkText";
 import { LuXCircle } from "react-icons/lu";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 

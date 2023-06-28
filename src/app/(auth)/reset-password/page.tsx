@@ -8,8 +8,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { LOGIN_GRAPHIC, LOGO } from "@/constants";
-import { FormButton } from "@/components/form/FormButton";
-import { LinkText } from "@/components/form/LinkText";
+import { FormButton } from "@/components/authForm/FormButton";
+import { LinkText } from "@/components/authForm/LinkText";
 
 const PasswordReset: React.FC = () => {
   const router = useRouter();

@@ -12,8 +12,8 @@ import { loginToken, loginUser } from "@/redux/Auth/authSlice";
 import { useRouter, usePathname } from "next/navigation";
 import { AppDispatch } from "@/redux/store";
 import Image from "next/image";
-import { EmailComponent } from "@/components/form/EmailComponent";
-import { PasswordComponent } from "@/components/form/PasswordComponent";
+import { EmailComponent } from "@/components/authForm/EmailComponent";
+import { PasswordComponent } from "@/components/authForm/PasswordComponent";
 
 type FormValues = {
   username: string;
@@ -236,12 +236,7 @@ const Login = () => {
     <div className="min-h-screen flex flex-col sm:flex-row justify-center">
       <div className="container sm:basis-3/5 flex flex-col min-h-screen">
         <div className="self-start mt-7">
-          <Image
-            width={34}
-            height={34}
-            src={LOGO}
-            alt="AuthX logo"
-          />
+          <Image width={34} height={34} src={LOGO} alt="AuthX logo" />
         </div>
         <div className="flex my-12 items-center justify-center grow sm:mr-12">
           <div className="-mt-32 w-fit max-w-lg">
