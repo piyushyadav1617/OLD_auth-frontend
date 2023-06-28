@@ -1,16 +1,19 @@
-"use client"
-import React, { useState } from 'react';
+"use client";
+
+import React, { useState } from "react";
 import { FaAngleRight } from "react-icons/fa";
-import logo from './logo.svg';
-import image from './group.svg';
-import Link from 'next/link';
-import Image from 'next/image';
-import { useRouter, useSearchParams, usePathname } from 'next/navigation';
+import logo from "./logo.svg";
+import image from "./group.svg";
+import Link from "next/link";
+import Image from "next/image";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { LOGIN_GRAPHIC, LOGO } from "@/constants";
+import { FormButton } from "@/components/form/FormButton";
+import { LinkText } from "@/components/form/LinkText";
 
 const PasswordReset: React.FC = () => {
   const router = useRouter();
-  const [email, setEmail] = useState('');
-
+  const [email, setEmail] = useState("");
 
   const handleForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,79 +24,93 @@ const PasswordReset: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen w-screen">
-      <div className="flex flex-col justify-center items-center h-full w-full md:w-3/5 my-20 md:my-0">
-        <div className="absolute top-4 left-4 md:top-8 md:left-8 w-10 md:w-20">
-          <Image src={logo} alt="logo" width="72" height="72" />
+    <div className="min-h-screen flex flex-col sm:flex-row justify-center">
+      <div className="container sm:basis-3/5 flex flex-col min-h-screen">
+        <div className="self-start mt-7">
+          <Image width={34} height={34} src={LOGO} alt="AuthX logo" />
         </div>
-        <div className="w-[90vw] sm:w-3/4  md:w-1/2 lg:w-1/2">
-          <h2 className="text-left text-2xl md:text-4xl mb-4 font-semibold">Reset Password</h2>
-        </div>
-
-        <form className="flex flex-col w-full items-center justify-center text-left" onSubmit={handleForm}>
-          <div className="relative w-[90vw] sm:w-3/4  md:w-1/2 lg:w-1/2 my-4 flex items-center">
-            <input
-              type="email"
-              id="email"
-              className="block w-full text-sm text-gray-900 bg-transparent rounded-lg border-2"
-              placeholder="name@gmail.com"
-              onChange={(e) => setEmail(e.target.value)}
+        <div className="flex my-12 items-center justify-center grow sm:mr-12">
+          <div className="-mt-32 w-fit max-w-lg">
+            <Image
+              className="mx-auto mb-8"
+              width={62}
+              height={62}
+              src={LOGO}
+              alt="AuthX logo"
             />
-            <label
-              htmlFor="email"
-              className="absolute translate-x-5 translate-y-[-29px] bg-white text-xl"
-            >
-              Email
-            </label>
-          </div>
-          <button
-            type="submit"
-            className="btn btn-spl-primary py-2 px-4 w-[90vw] sm:w-3/4  md:w-1/2 lg:w-1/2 mb-4  btn-ca bg-gradient-to-r from-black to-[#6F6F6F] flex items-center justify-center"
-          >
-            <span>Next</span>
-            <span className="forward-arr">
-              {" "}
-              <FaAngleRight className="ca-forward-arr text-2xl mt-[2px]" />
-            </span>
-          </button>
+            <h1 className="scroll-m-20 text-4xl text-left pb-9 md:pb-11 font-semibold transition-colors first:mt-0">
+              Reset Password
+            </h1>
+            <div className="login-wrapper form-wrapper">
+              <form onSubmit={handleForm}>
+                <div className="form-group relative">
+                  <label
+                    htmlFor="email"
+                    className={`form-label absolute translate-x-6 translate-y-[-12px] bg-white px-2 
+                    ${
+                      ""
+                      // errors.password && "text-red-600"
+                    }
+                    `}
+                  >
+                    Email
+                  </label>
+                  <input
+                    // {...register("password")}
+                    id="email"
+                    type="text"
+                    className={`form-control w-full px-8 py-3 border rounded-lg border-slate-500
+                    ${
+                      ""
+                      // errors.password ? "border-red-600" : "border-slate-500"
+                    }`}
+                    placeholder="name@example.com"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  {/* {errors.password && (
+                    <div className="mt-2 color text-red-600">
+                      <span>{errors.password?.message}</span>
+                    </div>
+                  )} */}
+                </div>
 
-        </form>
-        <div className="ats-content mt-4 md:mt-11 mx-auto text-center md:text-left ">
-          <p className="mb-0 text-xl flex items-center justify-center flex-wrap">
-            I remember AuthX password &nbsp;
-            <Link
-              className="a-t-s a-link text-xl flex items-center"
-              href="/"
-            >
-              advance to Login{" "}
-              <span className="forward-arr arr-black">
-                {" "}
-                <FaAngleRight className="pt-1 text-2xl" />
-              </span>
-            </Link>
-          </p>
+                <div className="form-group">
+                  <div className="d-grid start">
+                    <FormButton>Next</FormButton>
+                  </div>
+                </div>
+
+                <div className="ats-content mt-8 md:mt-11">
+                  <p className="mb-0 text-xl flex items-center flex-wrap">
+                    I remember my AuthX password
+                    <LinkText to="/">advance to Login</LinkText>
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="flex flex-col justify-center items-center w-full md:w-2/5 md:mt-0 bg-black text-white">
-        <p className="text-2xl md:text-3xl my-5 mx-auto text-center md:text-left">AuthX: Ensure Security at every level</p>
-        <Image src={image} alt="" className="w-72" />
-        <div className='w-full  pb-8 text-right px-3'>
-          <span>© 2023 TrustAuthx. All rights reserved.</span>
+      <div className="bg-black min-h-screen w-full sm:basis-2/5 relative flex flex-col justify-center">
+        <div className="flex flex-col items-center my-10 md:mt-12">
+          <h1 className="text-3xl xl:text-4xl mx-4 text-white max-w-lg tracking-widest font-light text-center">
+            AuthX: Ensure Security at every level
+          </h1>
+          <Image
+            className="mt-8 md:mt-10 xl:mt-12 w-3/5 max-h-[65vh]"
+            src={LOGIN_GRAPHIC}
+            alt="AuthX pre login"
+            width={240}
+            height={400}
+          />
         </div>
+        <span className="text-white w-full text-right absolute bottom-0 right-0 mb-4 xl:mb-8 mr-6">
+          © 2023 TrustAuthx. All rights reserved.
+        </span>
       </div>
     </div>
   );
 };
 
 export default PasswordReset;
-
-
-
-
-
-
-
-
-
-

@@ -24,7 +24,6 @@ export const EmailComponent = ({
     <div className="login-wrapper form-wrapper">
       <form
         onSubmit={handleSubmit(handleEmailSubmit)}
-        // className="was-validated"
       >
         <div className="form-group relative">
           <label

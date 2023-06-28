@@ -2,10 +2,8 @@
 
 import { SIGNUP_GRAPHIC } from "@/constants";
 import { LOGO } from "@/constants";
-import React, { useState, useEffect, ReactNode, ReactPropTypes } from "react";
+import React, { useState, useEffect } from "react";
 import { LuXCircle } from "react-icons/lu";
-import { FaAngleRight } from "react-icons/fa";
-import Link from "next/link";
 import Modal from "../../../components/Modal";
 import Image from "next/image";
 import OtpInput from "react-otp-input";
@@ -16,7 +14,6 @@ import {
   AlertDescription,
   AlertTitle,
 } from "../../../components/ui/alert";
-import { createRipple } from "../../../helper/createRipple";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useRouter } from "next/navigation";
@@ -322,7 +319,7 @@ const SignUp = () => {
                     htmlFor="terms"
                     className="ml-5 text-sm font-medium tracking-[.13em] leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   >
-                    I have read and agree to Flitchcoin's
+                    I have read and agree to Flitchcoin's{" "}
                     <a className="underline underline-offset-2" href="#">
                       Terms of Service
                     </a>{" "}
