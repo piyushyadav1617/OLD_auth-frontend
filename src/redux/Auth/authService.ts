@@ -1,22 +1,32 @@
 import { API_DOMAIN } from "@/constants";
 import axios from "axios";
 
-const defaultType = async (type) => {
+type UserValue = {
+  username: string;
+  password: string;
+  full_name: string;
+  is_pool: boolean;
+  ref: string;
+  link: string | boolean;
+  types: string;
+}
+
+const defaultType = async (type: any) => {
   return type;
 };
 
-const loginUser = async (data) => {
+const loginUser = async (data: any) => {
   return data.type;
 };
 
 // signup user
-const signupUser = async (data) => {
+const signupUser = async (data: any) => {
   let response;
-  let userValue = {
+  let userValue: UserValue = {
     username: "",
     password: "",
     full_name: "",
-    is_pool: null,
+    is_pool: false,
     ref: "",
     link: "",
     types: ""
@@ -47,18 +57,18 @@ const signupUser = async (data) => {
   }
   try {
     response = await axios.post("https://api.trustauthx.com/api/Signup", userValue);
-  } catch (error) {
+  } catch (error: any) {
     response = error.response;
   }
   return response;
 };
 
 // otp verify
-const verifyEmail = async (data) => {
+const verifyEmail = async (data: any) => {
   let response;
   try {
     response = await axios.post(`https://api.trustauthx.com/api/verify_email/${data.link}`, data);
-  } catch (error) {
+  } catch (error: any) {
     response = error.response;
   }
   if (response.status === 406) {
@@ -101,7 +111,7 @@ const loginToken = async (data: any) => {
   }
 };
 
-const signinUser = async (data) => {
+const signinUser = async (data: any) => {
   return data.type;
 };
 const logOutUser = async () => {

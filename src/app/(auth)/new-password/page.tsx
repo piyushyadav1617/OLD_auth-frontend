@@ -1,4 +1,5 @@
 "use client"
+
 import React, { useEffect, useState } from "react";
 import { FaAngleRight } from "react-icons/fa";
 import image from '../reset-password/group.svg';

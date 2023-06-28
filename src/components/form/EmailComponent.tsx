@@ -53,27 +53,14 @@ export const EmailComponent = ({
 
         <div className="form-group">
           <div className="d-grid start">
-            <FormButton>
-              <span className="text-2xl font-semibold tracking-widest">Next</span>
-              <span>
-                <FaAngleRight className="ca-forward-arr text-2xl mt-[2px]" />
-              </span>
-            </FormButton>
+            <FormButton>Next</FormButton>
           </div>
         </div>
 
         <div className="ats-content mt-8 md:mt-11">
           <p className="mb-0 text-xl flex items-center flex-wrap">
             I don’t have an AuthX account
-            <Link
-              className="a-t-s a-link pl-2 text-xl flex items-center"
-              href="/signup"
-            >
-              <LinkText>advance to Signup</LinkText>
-              <span className="forward-arr arr-black">
-                <FaAngleRight className="pt-1 text-2xl" />
-              </span>
-            </Link>
+            <LinkText to="/signup">advance to Signup</LinkText>
           </p>
         </div>
       </form>

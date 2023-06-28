@@ -10,13 +10,10 @@ import { LOGIN_GRAPHIC, LOGO } from "@/constants";
 import { checkUser } from "@/helper/api";
 import { loginToken, loginUser } from "@/redux/Auth/authSlice";
 import { useRouter, usePathname } from "next/navigation";
-// import { EmailComponent } from "./(auth)/login/components/EmailComponent";
-// import { PasswordComponent } from "./(auth)/login/components/PasswordComponent";
 import { AppDispatch } from "@/redux/store";
 import Image from "next/image";
 import { EmailComponent } from "@/components/form/EmailComponent";
 import { PasswordComponent } from "@/components/form/PasswordComponent";
-PasswordComponent
 
 type FormValues = {
   username: string;
@@ -278,9 +275,9 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <div className="bg-black min-h-screen w-full sm:basis-2/5 relative">
+      <div className="bg-black min-h-screen w-full sm:basis-2/5 relative flex flex-col justify-center">
         <div className="flex flex-col items-center my-10 md:mt-12">
-          <h1 className="text-3xl xl:text-4xl mx-4 text-white max-w-md tracking-widest font-light text-center">
+          <h1 className="text-3xl xl:text-4xl mx-4 text-white max-w-lg tracking-widest font-light text-center">
             AuthX: Ensure Security at every level
           </h1>
           <Image
