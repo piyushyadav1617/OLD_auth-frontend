@@ -319,7 +319,7 @@ const SignUp = () => {
                     htmlFor="terms"
                     className="ml-5 text-sm font-medium tracking-[.13em] leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   >
-                    I have read and agree to Flitchcoin's
+                    I have read and agree to Flitchcoin's{" "}
                     <a className="underline underline-offset-2" href="#">
                       Terms of Service
                     </a>{" "}
